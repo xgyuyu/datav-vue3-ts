@@ -1,0 +1,330 @@
+[
+  {
+    "key": "textStyle",
+    "config": {
+      "id": 2099,
+      "type": "object",
+      "component": "none",
+      "alias": "文本样式",
+      "tip": "",
+      "displayMode": "nest",
+      "features": [],
+      "layout": "horizontal",
+      "toggleCol": "",
+      "isHide": false,
+      "defaultValue": null,
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "InfiniteMin": false,
+      "InfiniteMax": false,
+      "suffix": "",
+      "enums": [],
+      "pairs": [],
+      "whichEnum": {
+        "field": "",
+        "value": ""
+      },
+      "flatValue": false,
+      "isRange": false
+    },
+    "path": "textStyle",
+    "virtualPath": "",
+    "children": [
+      {
+        "key": "fontFamily",
+        "config": {
+          "id": 6104,
+          "type": "string",
+          "component": "fontFamily",
+          "alias": "字体",
+          "tip": "请选择您系统有的字体，如果您系统无此字体，标题将会显示默认字体",
+          "displayMode": "single",
+          "features": [],
+          "layout": "horizontal",
+          "toggleCol": "",
+          "isHide": false,
+          "defaultValue": "Microsoft Yahei",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "InfiniteMin": false,
+          "InfiniteMax": false,
+          "suffix": "",
+          "enums": [],
+          "pairs": [],
+          "whichEnum": {
+            "field": "",
+            "value": ""
+          },
+          "flatValue": false,
+          "isRange": false
+        },
+        "path": "textStyle.fontFamily",
+        "virtualPath": ""
+      },
+      {
+        "key": "fontSize",
+        "config": {
+          "id": 9882,
+          "type": "number",
+          "component": "number",
+          "alias": "字号",
+          "tip": "",
+          "displayMode": "single",
+          "features": [],
+          "layout": "horizontal",
+          "toggleCol": "",
+          "isHide": false,
+          "defaultValue": 18,
+          "min": 12,
+          "max": 100,
+          "step": 1,
+          "InfiniteMin": false,
+          "InfiniteMax": false,
+          "suffix": "px",
+          "enums": [],
+          "pairs": [],
+          "whichEnum": {
+            "field": "",
+            "value": ""
+          },
+          "flatValue": false,
+          "isRange": false
+        },
+        "path": "textStyle.fontSize",
+        "virtualPath": ""
+      },
+      {
+        "key": "color",
+        "config": {
+          "id": 7517,
+          "type": "string",
+          "component": "color",
+          "alias": "字体颜色",
+          "tip": "",
+          "displayMode": "single",
+          "features": [],
+          "layout": "horizontal",
+          "toggleCol": "",
+          "isHide": false,
+          "defaultValue": "#fff",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "InfiniteMin": false,
+          "InfiniteMax": false,
+          "suffix": "",
+          "enums": [],
+          "pairs": [],
+          "whichEnum": {
+            "field": "",
+            "value": ""
+          },
+          "flatValue": false,
+          "isRange": false
+        },
+        "path": "textStyle.color",
+        "virtualPath": ""
+      },
+      {
+        "key": "fontWeight",
+        "config": {
+          "id": 2315,
+          "type": "string",
+          "component": "fontWeight",
+          "alias": "字体粗细",
+          "tip": "",
+          "displayMode": "single",
+          "features": [],
+          "layout": "horizontal",
+          "toggleCol": "",
+          "isHide": false,
+          "defaultValue": "normal",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "InfiniteMin": false,
+          "InfiniteMax": false,
+          "suffix": "",
+          "enums": [],
+          "pairs": [],
+          "whichEnum": {
+            "field": "",
+            "value": ""
+          },
+          "flatValue": false,
+          "isRange": false
+        },
+        "path": "textStyle.fontWeight",
+        "virtualPath": ""
+      }
+    ],
+    "cols": [
+      "fontFamily",
+      "fontSize",
+      "color",
+      "fontWeight"
+    ]
+  },
+  {
+    "key": "loop",
+    "config": {
+      "id": 7710,
+      "type": "boolean",
+      "component": "switch",
+      "alias": "是否轮播",
+      "tip": "",
+      "displayMode": "single",
+      "features": [],
+      "layout": "horizontal",
+      "toggleCol": "",
+      "isHide": false,
+      "defaultValue": true,
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "InfiniteMin": false,
+      "InfiniteMax": false,
+      "suffix": "",
+      "enums": [],
+      "pairs": [],
+      "whichEnum": {
+        "field": "",
+        "value": ""
+      },
+      "flatValue": false,
+      "isRange": false
+    },
+    "path": "loop",
+    "virtualPath": ""
+  },
+  {
+    "key": "ifSpeed",
+    "config": {
+      "id": 6272,
+      "type": "boolean",
+      "component": "switch",
+      "alias": "定速播放",
+      "tip": "",
+      "displayMode": "single",
+      "features": [],
+      "layout": "horizontal",
+      "toggleCol": "",
+      "isHide": false,
+      "defaultValue": false,
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "InfiniteMin": false,
+      "InfiniteMax": false,
+      "suffix": "",
+      "enums": [],
+      "pairs": [],
+      "whichEnum": {
+        "field": "",
+        "value": ""
+      },
+      "flatValue": false,
+      "isRange": false
+    },
+    "path": "ifSpeed",
+    "virtualPath": ""
+  },
+  {
+    "key": "duration",
+    "config": {
+      "id": 3796,
+      "type": "number",
+      "component": "number",
+      "alias": "动画时间",
+      "tip": "",
+      "displayMode": "single",
+      "features": [],
+      "layout": "horizontal",
+      "toggleCol": "",
+      "isHide": false,
+      "defaultValue": 8000,
+      "min": 0,
+      "max": 100,
+      "step": 100,
+      "InfiniteMin": false,
+      "InfiniteMax": true,
+      "suffix": "ms",
+      "enums": [],
+      "pairs": [],
+      "whichEnum": {
+        "field": "ifSpeed",
+        "value": "false"
+      },
+      "flatValue": false,
+      "isRange": false
+    },
+    "path": "duration",
+    "virtualPath": ""
+  },
+  {
+    "key": "speed",
+    "config": {
+      "id": 9988,
+      "type": "number",
+      "component": "number",
+      "alias": "动画间隔",
+      "tip": "每100长度动画时长",
+      "displayMode": "single",
+      "features": [],
+      "layout": "horizontal",
+      "toggleCol": "",
+      "isHide": false,
+      "defaultValue": 1000,
+      "min": 0,
+      "max": 100,
+      "step": 100,
+      "InfiniteMin": false,
+      "InfiniteMax": true,
+      "suffix": "ms",
+      "enums": [],
+      "pairs": [],
+      "whichEnum": {
+        "field": "ifSpeed",
+        "value": "true"
+      },
+      "flatValue": false,
+      "isRange": false
+    },
+    "path": "speed",
+    "virtualPath": ""
+  },
+  {
+    "key": "timeout",
+    "config": {
+      "id": 7176,
+      "type": "number",
+      "component": "number",
+      "alias": "每次停留",
+      "tip": "",
+      "displayMode": "single",
+      "features": [],
+      "layout": "horizontal",
+      "toggleCol": "",
+      "isHide": false,
+      "defaultValue": 1000,
+      "min": 0,
+      "max": 100,
+      "step": 100,
+      "InfiniteMin": false,
+      "InfiniteMax": true,
+      "suffix": "ms",
+      "enums": [],
+      "pairs": [],
+      "whichEnum": {
+        "field": "",
+        "value": ""
+      },
+      "flatValue": false,
+      "isRange": false
+    },
+    "path": "timeout",
+    "virtualPath": ""
+  }
+]

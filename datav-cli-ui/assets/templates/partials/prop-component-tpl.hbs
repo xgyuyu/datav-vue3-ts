@@ -1,0 +1,221 @@
+{{#if (eq config.component componentTypes.input)}}
+<g-input
+  {{#if (and judgeEnum config.whichEnum.field)}}
+  v-if="{{getSlotPath path virtualPath}}.{{config.whichEnum.field}} === '{{config.whichEnum.value}}'"
+  {{/if}}
+  v-model="{{ getPath path virtualPath }}"
+  {{#if (getInlineMode config.displayMode)}}
+  inline="{{config.displayMode}}"
+  label="{{config.alias}}"
+  {{/if}}
+/>
+{{else if (eq config.component componentTypes.number)}}
+<g-input-number
+  {{#if (and judgeEnum config.whichEnum.field)}}
+  v-if="{{getSlotPath path virtualPath}}.{{config.whichEnum.field}} === '{{config.whichEnum.value}}'"
+  {{/if}}
+  v-model="{{ getPath path virtualPath }}"
+  {{#unless config.InfiniteMin}}
+  :min="{{config.min}}"
+  {{/unless}}
+  {{#unless config.InfiniteMax}}
+  :max="{{config.max}}"
+  {{/unless}}
+  :step="{{config.step}}"
+  {{#if config.suffix}}
+  suffix="{{config.suffix}}"
+  {{/if}}
+  {{#if (getInlineMode config.displayMode)}}
+  inline="{{config.displayMode}}"
+  label="{{config.alias}}"
+  {{/if}}
+/>
+{{else if (eq config.component componentTypes.color)}}
+<g-color-picker
+  {{#if (and judgeEnum config.whichEnum.field)}}
+  v-if="{{getSlotPath path virtualPath}}.{{config.whichEnum.field}} === '{{config.whichEnum.value}}'"
+  {{/if}}
+  v-model="{{ getPath path virtualPath }}"
+  {{#if (getInlineMode config.displayMode)}}
+  inline="{{config.displayMode}}"
+  label="{{config.alias}}"
+  {{/if}}
+/>
+{{else if (eq config.component componentTypes.checkbox)}}
+<n-checkbox
+  {{#if (and judgeEnum config.whichEnum.field)}}
+  v-if="{{getSlotPath path virtualPath}}.{{config.whichEnum.field}} === '{{config.whichEnum.value}}'"
+  {{/if}}
+  v-model:checked="{{ getPath path virtualPath }}"
+/>
+{{else if (eq config.component componentTypes.switch)}}
+<n-switch
+  {{#if (and judgeEnum config.whichEnum.field)}}
+  v-if="{{getSlotPath path virtualPath}}.{{config.whichEnum.field}} === '{{config.whichEnum.value}}'"
+  {{/if}}
+  v-model:value="{{ getPath path virtualPath }}"
+/>
+{{else if (eq config.component componentTypes.radio)}}
+<n-radio-group
+  {{#if (and judgeEnum config.whichEnum.field)}}
+  v-if="{{getSlotPath path virtualPath}}.{{config.whichEnum.field}} === '{{config.whichEnum.value}}'"
+  {{/if}}
+  v-model:value="{{ getPath path virtualPath }}"
+  size="small"
+>
+  <n-radio-button
+    v-for="pair in pairData{{config.id}}"
+    :key="pair.key"
+    :value="pair.key"
+  >
+    \{{ pair.value }}
+  </n-radio-button>
+</n-radio-group>
+{{else if (eq config.component componentTypes.radioBase)}}
+<n-radio-group
+  {{#if (and judgeEnum config.whichEnum.field)}}
+  v-if="{{getSlotPath path virtualPath}}.{{config.whichEnum.field}} === '{{config.whichEnum.value}}'"
+  {{/if}}
+  v-model:value="{{ getPath path virtualPath }}"
+  size="small"
+>
+  <n-radio
+    v-for="pair in pairData{{config.id}}"
+    :key="pair.key"
+    :value="pair.key"
+  >
+    \{{ pair.value }}
+  </n-radio>
+</n-radio-group>
+{{else if (eq config.component componentTypes.slider)}}
+<g-slider
+  {{#if (and judgeEnum config.whichEnum.field)}}
+  v-if="{{getSlotPath path virtualPath}}.{{config.whichEnum.field}} === '{{config.whichEnum.value}}'"
+  {{/if}}
+  v-model="{{ getPath path virtualPath }}"
+  {{#unless config.InfiniteMin}}
+  :min="{{config.min}}"
+  {{/unless}}
+  {{#unless config.InfiniteMax}}
+  :max="{{config.max}}"
+  {{/unless}}
+  :step="{{config.step}}"
+  {{#if config.suffix}}
+  suffix="{{config.suffix}}"
+  {{/if}}
+  {{#if (getInlineMode config.displayMode)}}
+  inline="{{config.displayMode}}"
+  label="{{config.alias}}"
+  {{/if}}
+/>
+{{else if (eq config.component componentTypes.sliderRange)}}
+<g-slider-range
+  {{#if (and judgeEnum config.whichEnum.field)}}
+  v-if="{{getSlotPath path virtualPath}}.{{config.whichEnum.field}} === '{{config.whichEnum.value}}'"
+  {{/if}}
+  v-model="{{ getPath path virtualPath }}"
+  {{#unless config.InfiniteMin}}
+  :min="{{config.min}}"
+  {{/unless}}
+  {{#unless config.InfiniteMax}}
+  :max="{{config.max}}"
+  {{/unless}}
+  :step="{{config.step}}"
+  {{#if (getInlineMode config.displayMode)}}
+  inline="{{config.displayMode}}"
+  label="{{config.alias}}"
+  {{/if}}
+/>
+{{else if (eq config.component componentTypes.select)}}
+<g-select
+  {{#if (and judgeEnum config.whichEnum.field)}}
+  v-if="{{getSlotPath path virtualPath}}.{{config.whichEnum.field}} === '{{config.whichEnum.value}}'"
+  {{/if}}
+  v-model="{{ getPath path virtualPath }}"
+  :data="pairData{{config.id}}"
+  {{#if (getInlineMode config.displayMode)}}
+  inline="{{config.displayMode}}"
+  label="{{config.alias}}"
+  {{/if}}
+/>
+{{else if (eq config.component componentTypes.uploadImage)}}
+<g-upload-image
+  {{#if (and judgeEnum config.whichEnum.field)}}
+  v-if="{{getSlotPath path virtualPath}}.{{config.whichEnum.field}} === '{{config.whichEnum.value}}'"
+  {{/if}}
+  v-model="{{ getPath path virtualPath }}"
+  {{#if (getInlineMode config.displayMode)}}
+  inline="{{config.displayMode}}"
+  label="{{config.alias}}"
+  {{/if}}
+/>
+{{else if (eq config.component componentTypes.selectImage)}}
+<g-select-image
+  {{#if (and judgeEnum config.whichEnum.field)}}
+  v-if="{{getSlotPath path virtualPath}}.{{config.whichEnum.field}} === '{{config.whichEnum.value}}'"
+  {{/if}}
+  v-model="{{ getPath path virtualPath }}"
+  :images="[]"
+  {{#if (getInlineMode config.displayMode)}}
+  inline="{{config.displayMode}}"
+  label="{{config.alias}}"
+  {{/if}}
+/>
+{{else if (eq config.component componentTypes.selectSuggest)}}
+<g-select-suggest
+  {{#if (and judgeEnum config.whichEnum.field)}}
+  v-if="{{getSlotPath path virtualPath}}.{{config.whichEnum.field}} === '{{config.whichEnum.value}}'"
+  {{/if}}
+  v-model="{{ getPath path virtualPath }}"
+  :data="{{config.component}}s"
+  :filters="enumData{{config.id}}"
+  {{#if (getInlineMode config.displayMode)}}
+  inline="{{config.displayMode}}"
+  label="{{config.alias}}"
+  {{/if}}
+/>
+{{else if (eq config.component componentTypes.echartIcon)}}
+<g-select-shape
+  {{#if (and judgeEnum config.whichEnum.field)}}
+  v-if="{{getSlotPath path virtualPath}}.{{config.whichEnum.field}} === '{{config.whichEnum.value}}'"
+  {{/if}}
+  v-model="{{ getPath path virtualPath }}"
+  :shapes="{{config.component}}s"
+  {{#if (getInlineMode config.displayMode)}}
+  inline="{{config.displayMode}}"
+  label="{{config.alias}}"
+  {{/if}}
+/>
+{{else if (hasSelectOpts selectOpts config.component)}}
+{{#if config.flatValue}}
+<n-radio-group
+  {{#if (and judgeEnum config.whichEnum.field)}}
+  v-if="{{getSlotPath path virtualPath}}.{{config.whichEnum.field}} === '{{config.whichEnum.value}}'"
+  {{/if}}
+  v-model:value="{{ getPath path virtualPath }}"
+  size="small"
+>
+  <n-radio-button
+    v-for="em in {{config.component}}s"
+    :key="em.id"
+    :value="em.id"
+  >
+    \{{ em.value }}
+  </n-radio-button>
+</n-radio-group>
+{{else}}
+<g-select
+  {{#if (and judgeEnum config.whichEnum.field)}}
+  v-if="{{getSlotPath path virtualPath}}.{{config.whichEnum.field}} === '{{config.whichEnum.value}}'"
+  {{/if}}
+  v-model="{{ getPath path virtualPath }}"
+  :data="{{config.component}}s"
+  {{#if (getInlineMode config.displayMode)}}
+  inline="{{config.displayMode}}"
+  label="{{config.alias}}"
+  {{/if}}
+/>
+{{/if}}
+{{else}}
+<span>--</span>
+{{/if}}

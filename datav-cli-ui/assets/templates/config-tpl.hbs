@@ -1,0 +1,33 @@
+<template>
+  <div class="setting-panel-gui">
+    {{> prop-config-tpl
+      configs=configs
+      propDataTypes=propDataTypes
+      componentTypes=componentTypes
+      selectOpts=selectOpts
+      toggleCol=''
+      level=1
+      isFlat=false
+    }}
+  </div>
+</template>
+
+<script lang='ts' setup>
+import { toRef } from 'vue'
+import {
+  {{#each selectOpts}}
+  {{this}},
+  {{/each}}
+} from '@/data/select-options'
+import { {{comName}} } from './{{fileName}}'
+
+const props = defineProps<{
+  com: {{comName}}
+}>()
+
+const config = toRef(props.com, 'config')
+
+{{> prop-data-tpl
+  configs=configs
+}}
+</script>

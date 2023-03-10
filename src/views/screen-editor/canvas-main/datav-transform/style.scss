@@ -1,0 +1,185 @@
+.transform-handler {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: move;
+  box-sizing: border-box;
+
+  .transform-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    cursor: move;
+  }
+
+  &.hided {
+    > .transform-bg,
+    > i[class$="-handler"] {
+      display: none;
+    }
+  }
+}
+
+.rotate-handler {
+  z-index: 2;
+  cursor: url('/images/rotate.png') 14 14, pointer;
+}
+
+.control-point {
+  z-index: 2;
+  display: none;
+  width: 20px;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+
+  &::after {
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    border-radius: 100%;
+    content: '';
+  }
+}
+
+@each $placement in ('top', 'bottom', 'left', 'right') {
+  .#{$placement}-handler {
+    position: absolute;
+    #{$placement}: -5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @if ($placement == 'top' or $placement == 'bottom') {
+      width: 100%;
+      height: 11px;
+    }
+
+    @else {
+      top: 0;
+      width: 11px;
+      height: 100%;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      background: var(--datav-com-focus-color);
+
+      @if ($placement == 'top' or $placement == 'bottom') {
+        width: 100%;
+        height: 1px;
+      }
+
+      @else {
+        width: 1px;
+        height: 100%;
+      }
+    }
+  }
+}
+
+@each $item in ('top-left', 'top-right', 'bottom-left', 'bottom-right') {
+  $index: str-index($item, '-');
+  $placement: str-slice($item, 1, $index - 1);
+  $adjacency: str-slice($item, $index + 1);
+
+  .#{$placement}-#{$adjacency}-handler {
+    position: absolute;
+    display: flex;
+    #{$placement}: -15px;
+    #{$adjacency}: -15px;
+    width: 11px;
+    height: 11px;
+    justify-content: center;
+    align-items: center;
+
+    .rotate-handler {
+      padding-#{$placement}: 21px;
+      padding-#{$adjacency}: 21px;
+    }
+  }
+}
+
+.datav-scale {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-origin: 0 0;
+  transition: outline 0.1s;
+
+  .datav-layer {
+    position: absolute;
+    will-change: transform;
+    cursor: pointer;
+  }
+
+  .datav-com,
+  .datav-layer {
+    width: 100%;
+    height: 100%;
+    outline: 0;
+    box-sizing: border-box;
+    transform-origin: 50% 50%;
+
+    .datav-wrapper-event-disable {
+      position: absolute;
+      top: 0;
+    }
+  }
+
+  &.--relative-hovered {
+    outline: 1px dashed var(--datav-com-hover-color);
+  }
+
+  &.hovered {
+    outline: 1px solid var(--datav-com-focus-color);
+  }
+}
+
+.datav-transform {
+  position: absolute;
+  will-change: transform;
+  cursor: pointer;
+
+  &.selected {
+    z-index: 1;
+
+    & > .datav-scale {
+      & > .datav-com,
+      & > .datav-layer {
+        background: var(--datav-com-focus-bg);
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+        outline: 1px solid var(--datav-com-focus-color);
+      }
+    }
+
+    .control-point {
+      display: flex;
+    }
+  }
+
+  &.hided,
+  &.locked {
+    pointer-events: none;
+  }
+}
+
+.datav-com ::v-deep(.datav-wrapper) {
+  pointer-events: none !important;
+}

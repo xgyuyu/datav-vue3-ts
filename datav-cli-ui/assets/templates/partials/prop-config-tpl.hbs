@@ -1,0 +1,159 @@
+{{#each configs as | item |}}
+{{#if (and (not item.config.isHide) (neq ../toggleCol item.key))}}
+{{#if ../isFlat}}
+{{> prop-component-tpl
+  componentTypes=../componentTypes
+  selectOpts=../selectOpts
+  judgeEnum=true
+}}
+{{else if (and item.children (not item.config.isRange))}}
+{{#if (eq item.config.displayMode 'nest')}}
+<g-field-collapse
+  {{#if item.config.whichEnum.field}}
+  {{#if (isTypeOf ../configs item.config.whichEnum.field ../propDataTypes.boolean)}}
+  v-if="{{getSlotPath item.path item.virtualPath}}.{{item.config.whichEnum.field}} === {{item.config.whichEnum.value}}"
+  {{else}}
+  v-if="{{getSlotPath item.path item.virtualPath}}.{{item.config.whichEnum.field}} === '{{item.config.whichEnum.value}}'"
+  {{/if}}
+  {{/if}}
+  {{#if item.config.toggleCol}}
+  v-model="{{getSlotPath item.path item.virtualPath}}.{{item.key}}.{{item.config.toggleCol}}"
+  :toggle="true"
+  {{/if}}
+  {{#if item.config.tip}}
+  tooltip="{{{item.config.tip}}}"
+  {{/if}}
+  label="{{item.config.alias}}"
+>
+  {{> prop-config-tpl
+    propDataTypes=../propDataTypes
+    componentTypes=../componentTypes
+    selectOpts=../selectOpts
+    configs=item.children
+    toggleCol=item.config.toggleCol
+    level=2
+  }}
+</g-field-collapse>
+{{else if (eq item.config.displayMode 'nest-array')}}
+<g-field-collapse
+  {{#if item.config.whichEnum.field}}
+  {{#if (isTypeOf ../configs item.config.whichEnum.field ../propDataTypes.boolean)}}
+  v-if="{{getSlotPath item.path item.virtualPath}}.{{item.config.whichEnum.field}} === {{item.config.whichEnum.value}}"
+  {{else}}
+  v-if="{{getSlotPath item.path item.virtualPath}}.{{item.config.whichEnum.field}} === '{{item.config.whichEnum.value}}'"
+  {{/if}}
+  {{/if}}
+  {{#if item.config.toggleCol}}
+  v-model="{{getSlotPath item.path item.virtualPath}}.{{item.key}}.{{item.config.toggleCol}}"
+  :toggle="true"
+  {{/if}}
+  {{#if item.config.tip}}
+  tooltip="{{{item.config.tip}}}"
+  {{/if}}
+  label="{{item.config.alias}}"
+  mode="layout"
+  default-layout="{{item.config.layout}}"
+  :features="{{{enumsToTpl item.config.features}}}"
+  :list="{{getSlotPath item.path item.virtualPath}}.{{item.key}}"
+  :min="{{item.config.min}}"
+  :max="{{item.config.max}}"
+  {{#if item.children.0.config.alias}}
+  tab="{{item.children.0.config.alias}}"
+  {{/if}}
+  {{#if (includes item.config.features 'add')}}
+  :add-item="handleAdd{{capitalize item.key}}Item"
+  {{/if}}
+>
+  <template #default="slotProps">
+    {{#if (eq item.children.0.config.displayMode 'flat')}}
+    <g-field
+      {{#if item.children.0.config.toggleCol}}
+      v-model="{{getSlotPath item.children.0.path item.children.0.virtualPath}}.{{item.children.0.key}}.{{item.children.0.config.toggleCol}}"
+      :toggle="true"
+      {{/if}}
+      label="{{item.children.0.config.alias}}"
+      tooltip="{{item.children.0.config.tip}}"
+      :level="2"
+      :is-flat="true"
+    >
+      {{> prop-config-tpl
+        propDataTypes=../propDataTypes
+        componentTypes=../componentTypes
+        selectOpts=../selectOpts
+        configs=item.children.0.children
+        toggleCol=item.children.0.config.toggleCol
+        level=2
+        isFlat=true
+      }}
+    </g-field>
+    {{else}}
+    {{> prop-config-tpl
+        propDataTypes=../propDataTypes
+        componentTypes=../componentTypes
+        selectOpts=../selectOpts
+        configs=item.children.0.children
+        toggleCol=item.children.0.config.toggleCol
+        level=2
+        isFlat=false
+    }}
+    {{/if}}
+  </template>
+</g-field-collapse>
+{{else if (eq item.config.displayMode 'flat')}}
+<g-field
+  {{#if item.config.whichEnum.field}}
+  {{#if (isTypeOf ../configs item.config.whichEnum.field ../propDataTypes.boolean)}}
+  v-if="{{getSlotPath item.path item.virtualPath}}.{{item.config.whichEnum.field}} === {{item.config.whichEnum.value}}"
+  {{else}}
+  v-if="{{getSlotPath item.path item.virtualPath}}.{{item.config.whichEnum.field}} === '{{item.config.whichEnum.value}}'"
+  {{/if}}
+  {{/if}}
+  {{#if item.config.toggleCol}}
+  v-model="{{getSlotPath item.path item.virtualPath}}.{{item.key}}.{{item.config.toggleCol}}"
+  :toggle="true"
+  {{/if}}
+  {{#if (neq ../level 1)}}
+  :level="{{../level}}"
+  {{/if}}
+  {{#if item.config.tip}}
+  tooltip="{{{item.config.tip}}}"
+  {{/if}}
+  label="{{item.config.alias}}"
+  :is-flat="true"
+>
+  {{> prop-config-tpl
+    propDataTypes=../propDataTypes
+    componentTypes=../componentTypes
+    selectOpts=../selectOpts
+    configs=item.children
+    toggleCol=item.config.toggleCol
+    level=2
+    isFlat=true
+  }}
+</g-field>
+{{/if}}
+{{else if (neq ../toggleCol item.key)}}
+<g-field
+  {{#if item.config.whichEnum.field}}
+  {{#if (isTypeOf ../configs item.config.whichEnum.field ../propDataTypes.boolean)}}
+  v-if="{{getSlotPath item.path item.virtualPath}}.{{item.config.whichEnum.field}} === {{item.config.whichEnum.value}}"
+  {{else}}
+  v-if="{{getSlotPath item.path item.virtualPath}}.{{item.config.whichEnum.field}} === '{{item.config.whichEnum.value}}'"
+  {{/if}}
+  {{/if}}
+  {{#if (neq ../level 1)}}
+  :level="{{../level}}"
+  {{/if}}
+  {{#if item.config.tip}}
+  tooltip="{{{item.config.tip}}}"
+  {{/if}}
+  label="{{item.config.alias}}"
+>
+  {{> prop-component-tpl
+    componentTypes=../componentTypes
+    selectOpts=../selectOpts
+  }}
+</g-field>
+{{/if}}
+{{/if}}
+{{/each}}
