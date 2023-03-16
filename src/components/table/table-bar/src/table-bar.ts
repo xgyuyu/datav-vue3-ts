@@ -106,7 +106,7 @@ export class TableBar extends DatavComponent {
   }
 
   initData() {
-    const fields = [
+    const fields: any = [
       createField('value', { description: '值说明' }),
       createField('content', { description: '内容说明' }),
     ]

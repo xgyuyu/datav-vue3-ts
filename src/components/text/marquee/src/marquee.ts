@@ -39,7 +39,7 @@ export class Marquee extends DatavComponent {
   }
 
   initData() {
-    const fields = [
+    const fields: any = [
       createField('value', { description: '值' }),
     ]
 

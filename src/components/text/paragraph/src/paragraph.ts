@@ -42,7 +42,7 @@ export class Paragraph extends DatavComponent {
   }
 
   initData() {
-    const fields = [
+    const fields: any = [
       createField('value', { description: '值' }),
     ]
 

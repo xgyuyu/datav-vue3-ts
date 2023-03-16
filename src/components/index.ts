@@ -5,6 +5,7 @@ import VBasicBar from './bar/basic-bar'
 import VLineBar from './lineBar/line-bar'
 import VBasicLine from './line/basic-line'
 import VChina2d from './map/china2d'
+import VThreeEarth from './map/threeEarth'
 import VWordCloud from './chart/word-cloud'
 import VMainTitle from './text/main-title'
 import VMarquee from './text/marquee'
@@ -19,7 +20,25 @@ import VDecoration from './media/decoration'
 import VMainImg from './media/main-img'
 import VDatePicker from './other/date-picker'
 import VTableBar from './table/table-bar'
-import VDvBorder from './datav/dv-border'
+import VDvBorder1 from './datav/border/dv-border-1'
+import VDvBorder2 from './datav/border/dv-border-2'
+import VDvBorder3 from './datav/border/dv-border-3'
+import VDvBorder4 from './datav/border/dv-border-4'
+import VDvBorder5 from './datav/border/dv-border-5'
+import VDvBorder6 from './datav/border/dv-border-6'
+import VDvBorder7 from './datav/border/dv-border-7'
+import VDvBorder8 from './datav/border/dv-border-8'
+import VDvBorder9 from './datav/border/dv-border-9'
+import VDvBorder10 from './datav/border/dv-border-10'
+import VDvBorder11 from './datav/border/dv-border-11'
+import VDvBorder12 from './datav/border/dv-border-12'
+
+import VDvDecorate1 from './datav/decorates/dv- decorate-1'
+import VDvDecorate2 from './datav/decorates/dv- decorate-2'
+import VDvDecorate3 from './datav/decorates/dv- decorate-3'
+import VDvDecorate4 from './datav/decorates/dv- decorate-4'
+import VDvDecorate5 from './datav/decorates/dv- decorate-5'
+import VDvDecorate6 from './datav/decorates/dv- decorate-6'
 // -- prepend placeholder 1 --
 
 const components = [
@@ -27,6 +46,8 @@ const components = [
   VLineBar,
   VBasicLine,
   VChina2d,
+  VThreeEarth,
+
   VWordCloud,
   VMainTitle,
   VMarquee,
@@ -41,7 +62,25 @@ const components = [
   VMainImg,
   VDatePicker,
   VTableBar,
-  VDvBorder,
+  VDvBorder1,
+  VDvBorder2,
+  VDvBorder3,
+  VDvBorder4,
+  VDvBorder5,
+  VDvBorder6,
+  VDvBorder7,
+  VDvBorder8,
+  VDvBorder9,
+  VDvBorder10,
+  VDvBorder11,
+  VDvBorder12,
+
+  VDvDecorate1,
+  VDvDecorate2,
+  VDvDecorate3,
+  VDvDecorate4,
+  VDvDecorate5,
+  VDvDecorate6,
 // -- prepend placeholder 2 --
 ]
 

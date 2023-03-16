@@ -31,6 +31,7 @@ export const useProjectStore = defineStore('project', {
         // 展示全部组件示例
         const { data } = await getSysTemplate(1)
         const res = await api.getProjects()
+        console.log('res=====', res);
         if (res.data.code === 0) {
           const list: ProjectGroup[] = res.data.data || []
 

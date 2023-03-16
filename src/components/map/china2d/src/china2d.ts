@@ -60,7 +60,7 @@ export class China2d extends DatavEChartsComponent {
   }
 
   initData() {
-    const fields = [
+    const fields: any = [
       createField('zoom', {
         type: 'number',
         description: '缩放级别',

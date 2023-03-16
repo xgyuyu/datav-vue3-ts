@@ -121,7 +121,7 @@ export abstract class DatavChartSeries {
   id: string
   name: string
 
-  constructor (type: string, name: string) {
+  protected constructor (type: string, name: string) {
     this.type = type
     this.id = generateId(name)
     this.name = name

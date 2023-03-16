@@ -247,7 +247,7 @@ export class BasicBar extends DatavEChartsComponent {
   }
 
   initData() {
-    const fields = [
+    const fields: any = [
       createField('x', { description: '类目' }),
       createField('y', { description: '值' }),
     ]

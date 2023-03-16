@@ -51,7 +51,7 @@ export class MainTitle extends DatavComponent {
   }
 
   initData() {
-    const fields = [
+    const fields: any = [
       createField('title', { description: '标题值', optional: true }),
       createField('url', { description: '超链接', optional: true }),
     ]

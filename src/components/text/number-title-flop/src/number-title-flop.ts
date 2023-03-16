@@ -88,7 +88,7 @@ export class NumberTitleFlop extends DatavComponent {
   }
 
   initData() {
-    const fields = [
+    const fields: any = [
       createField('title', {
         description: '标题',
         optional: true,

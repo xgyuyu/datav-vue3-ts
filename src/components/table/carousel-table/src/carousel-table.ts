@@ -133,7 +133,7 @@ export class CarouselTable extends DatavComponent {
     setApiConfig(this)
     setApiData(this)
 
-    const fields = [
+    const fields: any = [
       createField('index', {
         type: 'number',
         description: '索引值',

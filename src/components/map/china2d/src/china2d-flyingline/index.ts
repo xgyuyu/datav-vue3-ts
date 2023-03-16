@@ -45,7 +45,7 @@ export class China2dFlyingline extends DatavComponent {
   }
 
   initData() {
-    const fields = [
+    const fields: any = [
       createField('from', { description: '飞线出发位置' }),
       createField('to', { description: '飞线结束位置' }),
     ]

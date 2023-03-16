@@ -79,7 +79,7 @@ export class China2dArea extends DatavEChartsComponent {
   }
 
   initData() {
-    const fields = [
+    const fields: any = [
       createField('area_id', { description: '区域编号' }),
       createField('name', {
         type: 'string',

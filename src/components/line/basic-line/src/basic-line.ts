@@ -272,7 +272,7 @@ export class BasicLine extends DatavEChartsComponent {
   }
 
   initData() {
-    const fields = [
+    const fields: any = [
       createField('x', { description: '类目' }),
       createField('y', { description: '值' }),
       createField('s', { description: '系列' }),

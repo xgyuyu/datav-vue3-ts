@@ -41,6 +41,155 @@ export const bar: ComDataType = {
   ],
 }
 
+export const datavBorderCom: ComDataType = {
+  type: 'datav',
+  name: '边框',
+  icon: 'v-icon-datav-com',
+  data: [
+    {
+      name: 'VDvBorder1',
+      alias: '边框1',
+      img: `${import.meta.env.VITE_APP_CDN}/com/basic-bar-332-144.png`,
+      thum: `${import.meta.env.VITE_APP_CDN}/com-thum/basic-bar-368-208.png`,
+      used: true,
+    },
+    {
+      name: 'VDvBorder2',
+      alias: '边框2',
+      img: `${import.meta.env.VITE_APP_CDN}/com/basic-bar-332-144.png`,
+      thum: `${import.meta.env.VITE_APP_CDN}/com-thum/basic-bar-368-208.png`,
+      used: true,
+    },
+    {
+      name: 'VDvBorder3',
+      alias: '边框3',
+      img: `${import.meta.env.VITE_APP_CDN}/com/basic-bar-332-144.png`,
+      thum: `${import.meta.env.VITE_APP_CDN}/com-thum/basic-bar-368-208.png`,
+      used: true,
+    },
+    {
+      name: 'VDvBorder4',
+      alias: '边框4',
+      img: `${import.meta.env.VITE_APP_CDN}/com/basic-bar-332-144.png`,
+      thum: `${import.meta.env.VITE_APP_CDN}/com-thum/basic-bar-368-208.png`,
+      used: true,
+    },
+    {
+      name: 'VDvBorder5',
+      alias: '边框5',
+      img: `${import.meta.env.VITE_APP_CDN}/com/basic-bar-332-144.png`,
+      thum: `${import.meta.env.VITE_APP_CDN}/com-thum/basic-bar-368-208.png`,
+      used: true,
+    },
+    {
+      name: 'VDvBorder6',
+      alias: '边框6',
+      img: `${import.meta.env.VITE_APP_CDN}/com/basic-bar-332-144.png`,
+      thum: `${import.meta.env.VITE_APP_CDN}/com-thum/basic-bar-368-208.png`,
+      used: true,
+    },
+    {
+      name: 'VDvBorder7',
+      alias: '边框7',
+      img: `${import.meta.env.VITE_APP_CDN}/com/basic-bar-332-144.png`,
+      thum: `${import.meta.env.VITE_APP_CDN}/com-thum/basic-bar-368-208.png`,
+      used: true,
+    },
+    {
+      name: 'VDvBorder8',
+      alias: '边框8',
+      img: `${import.meta.env.VITE_APP_CDN}/com/basic-bar-332-144.png`,
+      thum: `${import.meta.env.VITE_APP_CDN}/com-thum/basic-bar-368-208.png`,
+      used: true,
+    },
+    {
+      name: 'VDvBorder9',
+      alias: '边框9',
+      img: `${import.meta.env.VITE_APP_CDN}/com/basic-bar-332-144.png`,
+      thum: `${import.meta.env.VITE_APP_CDN}/com-thum/basic-bar-368-208.png`,
+      used: true,
+    },
+    {
+      name: 'VDvBorder10',
+      alias: '边框10',
+      img: `${import.meta.env.VITE_APP_CDN}/com/basic-bar-332-144.png`,
+      thum: `${import.meta.env.VITE_APP_CDN}/com-thum/basic-bar-368-208.png`,
+      used: true,
+    },
+    {
+      name: 'VDvBorder11',
+      alias: '边框11',
+      img: `${import.meta.env.VITE_APP_CDN}/com/basic-bar-332-144.png`,
+      thum: `${import.meta.env.VITE_APP_CDN}/com-thum/basic-bar-368-208.png`,
+      used: true,
+    },
+    {
+      name: 'VDvBorder12',
+      alias: '边框12',
+      img: `${import.meta.env.VITE_APP_CDN}/com/basic-bar-332-144.png`,
+      thum: `${import.meta.env.VITE_APP_CDN}/com-thum/basic-bar-368-208.png`,
+      used: true,
+    },
+  ]
+}
+
+export const datavDecoratesCom: ComDataType = {
+  type: 'datav',
+  name: '装饰',
+  icon: 'v-icon-datav-com',
+  data: [
+    {
+      name: 'VDvDecorate1',
+      alias: '装饰1',
+      img: `${import.meta.env.VITE_APP_CDN}/com/basic-bar-332-144.png`,
+      thum: `${import.meta.env.VITE_APP_CDN}/com-thum/basic-bar-368-208.png`,
+      used: true,
+    },
+    {
+      name: 'VDvDecorate2',
+      alias: '装饰2',
+      img: `${import.meta.env.VITE_APP_CDN}/com/basic-bar-332-144.png`,
+      thum: `${import.meta.env.VITE_APP_CDN}/com-thum/basic-bar-368-208.png`,
+      used: true,
+    },
+    {
+      name: 'VDvDecorate3',
+      alias: '装饰3',
+      img: `${import.meta.env.VITE_APP_CDN}/com/basic-bar-332-144.png`,
+      thum: `${import.meta.env.VITE_APP_CDN}/com-thum/basic-bar-368-208.png`,
+      used: true,
+    },
+    {
+      name: 'VDvDecorate4',
+      alias: '装饰4',
+      img: `${import.meta.env.VITE_APP_CDN}/com/basic-bar-332-144.png`,
+      thum: `${import.meta.env.VITE_APP_CDN}/com-thum/basic-bar-368-208.png`,
+      used: true,
+    },
+    {
+      name: 'VDvDecorate5',
+      alias: '装饰5',
+      img: `${import.meta.env.VITE_APP_CDN}/com/basic-bar-332-144.png`,
+      thum: `${import.meta.env.VITE_APP_CDN}/com-thum/basic-bar-368-208.png`,
+      used: true,
+    },
+    // {
+    //   name: 'VDecoration',
+    //   alias: '装饰',
+    //   img: `${import.meta.env.VITE_APP_CDN}/com/decoration-162-116.png`,
+    //   thum: `${import.meta.env.VITE_APP_CDN}/com-thum/decoration-370-208.png`,
+    //   used: true,
+    // },
+    {
+      name: 'VDvDecorate6',
+      alias: '装饰6',
+      img: `${import.meta.env.VITE_APP_CDN}/com/basic-bar-332-144.png`,
+      thum: `${import.meta.env.VITE_APP_CDN}/com-thum/basic-bar-368-208.png`,
+      used: true,
+    },
+  ]
+}
+
 export const horizontalBar: ComDataType = {
   type: 'horizontal-bar',
   name: '条形图',
@@ -183,11 +332,11 @@ export const map: ComDataType = {
       thum: `${import.meta.env.VITE_APP_CDN}/com/3d-map-664-288.jpg`,
       used: false,
     }, {
-      name: 'VEarth3d',
+      name: 'VThreeEarth',
       alias: '3D地球',
       img: `${import.meta.env.VITE_APP_CDN}/com/3d-earth-664-288.jpg`,
       thum: `${import.meta.env.VITE_APP_CDN}/com/3d-earth-664-288.jpg`,
-      used: false,
+      used: true,
     },
   ],
 }
@@ -315,12 +464,6 @@ export const material: ComDataType = {
       thum: `${import.meta.env.VITE_APP_CDN}/com-thum/border-box-370-208.png`,
       used: true,
     }, {
-      name: 'VDecoration',
-      alias: '装饰',
-      img: `${import.meta.env.VITE_APP_CDN}/com/decoration-162-116.png`,
-      thum: `${import.meta.env.VITE_APP_CDN}/com-thum/decoration-370-208.png`,
-      used: true,
-    }, {
       name: 'VMainImg',
       alias: '单张图片',
       img: `${import.meta.env.VITE_APP_CDN}/com/main-img-334-144.png`,
@@ -357,6 +500,12 @@ export const classifications: ComDataType[] = [
     name: '地图',
     icon: 'v-icon-map',
     data: [map],
+  },
+  {
+    type: 'DataV',
+    name: 'DataV',
+    icon: 'v-icon-datav-com',
+    data: [datavBorderCom, datavDecoratesCom],
   },
   {
     type: 'text',

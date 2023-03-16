@@ -53,6 +53,7 @@ specifiers:
   stylelint: ^14.16.0
   stylelint-config-prettier: ^9.0.4
   stylelint-config-standard: ^29.0.0
+  three: ^0.150.1
   tslib: ^2.4.1
   tsparticles: ^2.6.0
   typescript: ^4.9.4
@@ -87,6 +88,7 @@ dependencies:
   particles.vue3: 2.6.0
   pinia: 2.0.28_prq2uz4lho2pwp6irk4cfkrxwu
   shortid: 2.2.16
+  three: 0.150.1
   tsparticles: 2.6.0
   vue: 3.2.45
   vue-echarts: 6.2.4_echarts@5.4.1+vue@3.2.45
@@ -6607,6 +6609,10 @@ packages:
   /text-table/0.2.0:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
     dev: true
+
+  /three/0.150.1:
+    resolution: {integrity: sha512-5C1MqKUWaHYo13BX0Q64qcdwImgnnjSOFgBscOzAo8MYCzEtqfQqorEKMcajnA3FHy1yVlIe9AmaMQ0OQracNA==}
+    dev: false
 
   /through/2.3.8:
     resolution: {integrity: sha1-DdTJ/6q8NXlgsbckEV1+Doai4fU=}

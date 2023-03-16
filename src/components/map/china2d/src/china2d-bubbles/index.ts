@@ -47,7 +47,7 @@ export class China2dBubbles extends DatavComponent {
   }
 
   initData() {
-    const fields = [
+    const fields: any = [
       createField('lng', { type: 'number',  description: '经度' }),
       createField('lat', { type: 'number', description: '纬度' }),
       createField('value', { type: 'number', description: '值' }),

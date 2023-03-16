@@ -15,6 +15,7 @@
     <IconOther v-else-if="icon === 'v-icon-other'" />
     <IconViewGrid v-else-if="icon === 'v-icon-view-grid'" />
     <IconFavorite v-else-if="icon === 'v-icon-favorite'" />
+    <IconDatavCom v-else-if="icon === 'v-icon-datav-com'" />
     <IconHelp v-else />
   </n-icon>
 </template>
@@ -38,6 +39,7 @@ import {
   IconComInfo,
   IconTable,
   IconMedia,
+  IconDatavCom,
 } from '@/icons'
 
 defineProps<{

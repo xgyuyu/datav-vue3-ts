@@ -212,6 +212,7 @@ export default defineComponent({
     }
 
     const doPublish = () => {
+      console.log('id.value=====', id.value);
       plConfig.publish(id.value)
     }
 

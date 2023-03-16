@@ -72,7 +72,7 @@ export class DatePicker extends DatavComponent {
   }
 
   initData() {
-    const fields = [
+    const fields: any = [
       createField('date', { description: '默认日期', optional: true }),
     ]
 

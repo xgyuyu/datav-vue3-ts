@@ -127,3 +127,30 @@ export const macMetaOrCtrl = (ev: MouseEvent | KeyboardEvent) => {
   const ismac = isMac()
   return (!ismac && ev.ctrlKey) || (ismac && ev.metaKey)
 }
+
+/**
+ * * 生成一个不重复的ID
+ * @param { Number } randomLength
+ */
+export const getUUID = (randomLength = 10) => {
+  return Number(Math.random().toString().substring(2, randomLength) + Date.now()).toString(36)
+}
+
+// * 开启加载
+export const loadingStart = () => {
+  window['$loading'].start()
+}
+
+// * 加载结束
+export const loadingFinish = () => {
+  setTimeout(() => {
+    window['$loading'].finish()
+  })
+}
+
+// * 加载错误
+export const loadingError = () => {
+  setTimeout(() => {
+    window['$loading'].error()
+  })
+}

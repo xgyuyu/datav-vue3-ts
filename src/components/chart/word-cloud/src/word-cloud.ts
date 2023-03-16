@@ -68,7 +68,7 @@ export class WordCloud extends DatavEChartsComponent {
   }
 
   initData() {
-    const fields = [
+    const fields: any = [
       createField('name', { description: '名称' }),
       createField('value', { description: '值' }),
       createField('type', { description: '系列' }),

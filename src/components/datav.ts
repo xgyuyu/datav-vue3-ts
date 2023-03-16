@@ -20,10 +20,9 @@ export async function createComponent(name: string) {
   if (!path) {
     path = paths.find(m => m.includes(`src/${file}/index.ts`))
   }
+  console.log('path=====', path);
   if (path) {
     const mod = await modules[path]()
-    console.log('modules[path]=====', modules[path]);
-    console.log('mod=====', new mod.default());
     return new mod.default()
   }
 
