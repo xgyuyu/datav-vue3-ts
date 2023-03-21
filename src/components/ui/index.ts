@@ -37,6 +37,8 @@ const install = (app: App): void => {
   // async registry with loading
   app.component('GMonacoEditor', loadAsyncComponent(() => import('./monaco-editor')))
 
+  app.component('ChartGlobImage', loadAsyncComponent(() => import('./chart-glob-image')))
+
   plugins.forEach(plugin => {
     app.use(plugin)
   })

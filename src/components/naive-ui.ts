@@ -28,6 +28,7 @@ import {
   NIcon,
   NInput,
   NInputNumber,
+  NInputGroup,
   NModal,
   NLayout,
   NPopconfirm,
@@ -49,6 +50,8 @@ import {
   NUpload,
   NUploadTrigger,
   NUploadDragger,
+  NText,
+  NProgress,
 } from 'naive-ui'
 
 export default create({
@@ -102,5 +105,8 @@ export default create({
     NUpload,
     NUploadTrigger,
     NUploadDragger,
+    NText,
+    NProgress,
+    NInputGroup,
   ],
 })

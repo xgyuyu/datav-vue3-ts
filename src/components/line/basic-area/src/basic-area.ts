@@ -1,4 +1,4 @@
-import { DatavEChartsComponent, DatavChartSeries } from '@/components/_models/datav-component'
+import {DatavChartSeries, DatavComponent} from '@/components/_models/datav-component'
 import {
   ApiConfigMap, ApiDataConfigMap,
   setApiConfig, setApiData,
@@ -6,7 +6,7 @@ import {
 import { createField } from '@/components/_models/data-field'
 import { DataEventConfig } from '@/components/_models/data-event'
 import { getStaticData } from '@/api/data'
-import { EChartEasing } from '@/components/_models/echarts-animation'
+import {EChartEasing} from "@/components/_models/echarts-animation";
 
 export class BasicLineSeries extends DatavChartSeries {
   constructor(name: string) {
@@ -53,47 +53,20 @@ export class BasicLineSeries extends DatavChartSeries {
       width: 0,
     },
   }
-}
 
-export class BasicBarSeries extends DatavChartSeries {
-  constructor(name: string) {
-    super('bar', name)
+  stack = "Total"
+
+  areaStyle = {
+    color: '#34FFF5',
+    opacity: 0.7,
   }
-  label = {
-    show: false,
-    field: 'y',
-    valueFormat: 'auto',
-    describe: {
-      prefix: '',
-      suffix: '',
-    },
-    offset: {
-      x: 0,
-      y: 0,
-    },
-    rotate: 0,
-    textStyle: {
-      fontSize: 12,
-      color: '#ddd',
-      fontWeight: 'normal',
-    },
-    stroke: {
-      color: '#000',
-      width: 0,
-    },
-  }
-  color = {
-    type: 'solid',
-    value: '#00baff',
-    from: '#fff',
-    to: '#000',
-  }
+
 }
 
 /**
- * LineBar
+ * BasicArea
  */
-export class LineBar extends DatavEChartsComponent {
+export class BasicArea extends DatavComponent {
   config = {
     global: {
       fontFamily: 'Microsoft Yahei',
@@ -104,13 +77,6 @@ export class LineBar extends DatavEChartsComponent {
         right: 30,
       },
       connectNulls: false,
-      innerPadding: 20,
-      outerPadding: 30,
-      barWidth: 'auto',
-      background: {
-        show: true,
-        color: 'rgba(255, 255, 255, 0.1)',
-      },
     },
     xAxis: {
       show: true,
@@ -291,15 +257,7 @@ export class LineBar extends DatavEChartsComponent {
         pageNumColor: '#90a0ae',
       },
     },
-    series: [],
-    seriesFn: (type) => {
-      if (type === 'line') {
-        return [new BasicLineSeries('')]
-      }
-      if (type === 'bar') {
-        return [new BasicBarSeries('')]
-      }
-    },
+    series: [new BasicLineSeries('')],
     animation: {
       enabled: true,
       duration: 1000,
@@ -308,15 +266,14 @@ export class LineBar extends DatavEChartsComponent {
     },
   }
 
+
   apis: Partial<ApiConfigMap>
   apiData: Partial<ApiDataConfigMap>
-
   events: Record<string, DataEventConfig>
-
   actions: Record<string, DataEventConfig>
 
   constructor() {
-    super('LineBar', { w: 500, h: 300 })
+    super('BasicArea', { w: 500, h: 300 })
 
     this.initData()
   }
@@ -330,30 +287,34 @@ export class LineBar extends DatavEChartsComponent {
 
     setApiConfig(this, {
       fields: Object.assign({}, ...fields),
-      description: '基本折线图接口',
+      description: '基本折线区域图接口',
     })
 
     setApiData(this)
 
-    this.events = {
-      click: {
-        description: '当点击数据项时',
-        fields: Object.assign({}, ...fields),
-      },
-    }
+    this.events = {}
     this.actions = {}
 
     const series2 = new BasicLineSeries('')
     series2.line.color = '#30D9F1'
+    series2.areaStyle.color = '#30D9F1'
     series2.point.color = '#30D9F1'
-    const series3 = new BasicBarSeries('')
+
+    const series3 = new BasicLineSeries('')
+    series3.line.color = '#2CB4ED'
+    series3.areaStyle.color = '#2CB4ED'
+    series3.point.color = '#2CB4ED'
+
     this.config.series.push(series2, series3)
+
     return this
   }
 
   async loadData() {
     try {
-      const path = 'line-bar/line-bar'
+      // 组件静态数据来源，当前项目统一管理目录：public/data/*
+      // 如：public/data/demo/data.json 简写为 => demo/data
+      const path = 'line/basic-line'
       const res = await getStaticData(this.id, path)
       this.apiData.source.config.data = JSON.stringify(res.data)
     } catch (error) {
@@ -362,4 +323,4 @@ export class LineBar extends DatavEChartsComponent {
   }
 }
 
-export default LineBar
+export default BasicArea

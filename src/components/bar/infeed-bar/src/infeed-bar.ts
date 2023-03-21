@@ -1,4 +1,4 @@
-import { DatavEChartsComponent, DatavChartSeries } from '@/components/_models/datav-component'
+import {DatavChartSeries, DatavComponent} from '@/components/_models/datav-component'
 import {
   ApiConfigMap, ApiDataConfigMap,
   setApiConfig, setApiData,
@@ -6,82 +6,13 @@ import {
 import { createField } from '@/components/_models/data-field'
 import { DataEventConfig } from '@/components/_models/data-event'
 import { getStaticData } from '@/api/data'
-import { EChartEasing } from '@/components/_models/echarts-animation'
-
-export class BasicLineSeries extends DatavChartSeries {
-  constructor(name: string) {
-    super('line', name)
-  }
-
-  line = {
-    color: '#34FFF5',
-    style: 'solid',
-    width: 1,
-    opacity: 1,
-    smooth: 0.5,
-  }
-
-  point = {
-    icon: 'roundRect',
-    color: '#34FFF5',
-    borderColor: 'rgba(0, 0, 0, 0.44)',
-    borderWidth: 1,
-    borderType: 'solid',
-    opacity: 1,
-  }
-
-  label = {
-    show: false,
-    field: 'y',
-    valueFormat: 'auto',
-    describe: {
-      prefix: '',
-      suffix: '',
-    },
-    offset: {
-      x: 0,
-      y: 0,
-    },
-    rotate: 0,
-    textStyle: {
-      fontSize: 12,
-      color: '#ddd',
-      fontWeight: 'normal',
-    },
-    stroke: {
-      color: '#000',
-      width: 0,
-    },
-  }
-}
+import {EChartEasing} from "@/components/_models/echarts-animation";
 
 export class BasicBarSeries extends DatavChartSeries {
   constructor(name: string) {
     super('bar', name)
   }
-  label = {
-    show: false,
-    field: 'y',
-    valueFormat: 'auto',
-    describe: {
-      prefix: '',
-      suffix: '',
-    },
-    offset: {
-      x: 0,
-      y: 0,
-    },
-    rotate: 0,
-    textStyle: {
-      fontSize: 12,
-      color: '#ddd',
-      fontWeight: 'normal',
-    },
-    stroke: {
-      color: '#000',
-      width: 0,
-    },
-  }
+
   color = {
     type: 'solid',
     value: '#00baff',
@@ -91,19 +22,18 @@ export class BasicBarSeries extends DatavChartSeries {
 }
 
 /**
- * LineBar
+ * InfeedBar
  */
-export class LineBar extends DatavEChartsComponent {
+export class InfeedBar extends DatavComponent {
   config = {
     global: {
       fontFamily: 'Microsoft Yahei',
       margin: {
         top: 40,
         bottom: 50,
-        left: 60,
-        right: 30,
+        left: 50,
+        right: 10,
       },
-      connectNulls: false,
       innerPadding: 20,
       outerPadding: 30,
       barWidth: 'auto',
@@ -112,13 +42,20 @@ export class LineBar extends DatavEChartsComponent {
         color: 'rgba(255, 255, 255, 0.1)',
       },
     },
+    label: {
+      show: false,
+      position: 'top',
+      textStyle: {
+        fontSize: 12,
+        color: 'rgba(255, 255, 255, 0.6)',
+        fontWeight: 'normal',
+      },
+      offsetX: 0,
+      offsetY: 0,
+    },
     xAxis: {
       show: true,
-      type: 'category',
-      extent: {
-        min: 'auto',
-        max: 'auto',
-      },
+      type: 'value',
       boundaryGap: true,
       title: {
         show: true,
@@ -172,14 +109,15 @@ export class LineBar extends DatavEChartsComponent {
           dashedSpace: 4,
         },
       },
-    },
-    yAxis: {
-      show: true,
-      type: 'value',
+      splitNumber: 0,
       extent: {
         min: 'auto',
         max: 'auto',
-      },
+      },},
+    yAxis: {
+      show: true,
+      type: 'category',
+
       title: {
         show: false,
         name: 'Y轴',
@@ -209,7 +147,6 @@ export class LineBar extends DatavEChartsComponent {
       axisLabel: {
         show: true,
         valueFormat: 'auto',
-        timeFormat: 'MM/DD',
         boundaryGap: 0,
         display: {
           rotate: 0,
@@ -235,7 +172,6 @@ export class LineBar extends DatavEChartsComponent {
     },
     tooltip: {
       show: true,
-      triggerOn: 'mousemove',
       textStyle: {
         fontSize: 14,
         color: '#fff',
@@ -247,8 +183,6 @@ export class LineBar extends DatavEChartsComponent {
           v: 5,
         },
         color: 'rgba(0, 0, 0, 0.65)',
-        borderColor: 'rgba(0, 0, 0, 0.25)',
-        borderWidth: 1,
       },
       pointer: {
         show: true,
@@ -291,15 +225,7 @@ export class LineBar extends DatavEChartsComponent {
         pageNumColor: '#90a0ae',
       },
     },
-    series: [],
-    seriesFn: (type) => {
-      if (type === 'line') {
-        return [new BasicLineSeries('')]
-      }
-      if (type === 'bar') {
-        return [new BasicBarSeries('')]
-      }
-    },
+    series: [new BasicBarSeries('系列1')],
     animation: {
       enabled: true,
       duration: 1000,
@@ -310,13 +236,11 @@ export class LineBar extends DatavEChartsComponent {
 
   apis: Partial<ApiConfigMap>
   apiData: Partial<ApiDataConfigMap>
-
   events: Record<string, DataEventConfig>
-
   actions: Record<string, DataEventConfig>
 
   constructor() {
-    super('LineBar', { w: 500, h: 300 })
+    super('InfeedBar', { w: 500, h: 300 })
 
     this.initData()
   }
@@ -325,35 +249,24 @@ export class LineBar extends DatavEChartsComponent {
     const fields: any = [
       createField('x', { description: '类目' }),
       createField('y', { description: '值' }),
-      createField('s', { description: '系列' }),
     ]
 
     setApiConfig(this, {
       fields: Object.assign({}, ...fields),
-      description: '基本折线图接口',
+      description: '水平基本柱状图接口',
     })
 
     setApiData(this)
 
-    this.events = {
-      click: {
-        description: '当点击数据项时',
-        fields: Object.assign({}, ...fields),
-      },
-    }
+    this.events = {}
     this.actions = {}
 
-    const series2 = new BasicLineSeries('')
-    series2.line.color = '#30D9F1'
-    series2.point.color = '#30D9F1'
-    const series3 = new BasicBarSeries('')
-    this.config.series.push(series2, series3)
     return this
   }
 
   async loadData() {
     try {
-      const path = 'line-bar/line-bar'
+      const path = 'bar/basic-bar'
       const res = await getStaticData(this.id, path)
       this.apiData.source.config.data = JSON.stringify(res.data)
     } catch (error) {
@@ -362,4 +275,4 @@ export class LineBar extends DatavEChartsComponent {
   }
 }
 
-export default LineBar
+export default InfeedBar

@@ -1,55 +1,55 @@
 <template>
   <div class="datav-wrapper" :style="wrapperStyle">
     <v-chart
-      :option="option"
-      autoresize
-      @click="onClick"
+        :option="option"
+        autoresize
+        @click="onClick"
     />
   </div>
 </template>
 
 <script lang='ts'>
-import {PropType, computed, toRef, defineComponent} from 'vue'
+import { defineComponent, PropType, computed, toRef } from 'vue'
 import { groupBy } from 'lodash-es'
 import dayjs from 'dayjs'
 import VChart from 'vue-echarts'
-import { use } from 'echarts/core'
+import { use, graphic } from 'echarts/core'
 import { CanvasRenderer } from 'echarts/renderers'
-import { LineChart } from 'echarts/charts'
+import { ScatterChart, EffectScatterChart } from 'echarts/charts'
 import { GridComponent, TooltipComponent, LegendComponent } from 'echarts/components'
 import { useDataCenter, getFieldMap } from '@/components/_mixins/use-data-center'
 import { useApiStore } from '@/store/api'
 import { useEventStore } from '@/store/event'
 import { getAutoValue, getLimitValue, valueFormater } from '@/components/_utils/echarts-util'
-import { LineBar } from './line-bar'
+import { BasicScatter } from './basic-scatter'
 
 use([
   CanvasRenderer,
-  LineChart,
+  ScatterChart,
+  EffectScatterChart,
   GridComponent,
   TooltipComponent,
   LegendComponent,
 ])
 
 export default defineComponent({
-  name: 'VLineBar',
+  name: 'VScatterBar',
   components: {
     VChart,
   },
   props: {
     com: {
-      type: Object as PropType<LineBar>,
+      type: Object as PropType<BasicScatter>,
       required: true,
     },
   },
   setup(props) {
     const apiStore = useApiStore()
     const eventStore = useEventStore()
-    console.log('props.com=====', props.com);
     useDataCenter(props.com)
 
     const dv_data = computed(() => {
-      return apiStore.dataMap[props.com.id]?.source ?? {}
+      return apiStore.dataMap[props.com.id]?.source ?? []
     })
 
     const dv_field = computed(() => {
@@ -58,119 +58,61 @@ export default defineComponent({
 
     const config = toRef(props.com, 'config')
     const attr = toRef(props.com, 'attr')
+
     const wrapperStyle = computed(() => {
       return {
-        transform: 'translateZ(0)',
         width: `${attr.value.w}px`,
         height: `${attr.value.h}px`,
       }
     })
 
     const chartData = computed(() => {
-      return groupBy(dv_data.value, item => item[dv_field.value.s])
+      const groups = groupBy(dv_data.value, item => item[dv_field.value.x])
+      return {
+        keys: Object.keys(groups),
+        values: Object.values(groups),
+      }
     })
 
-    const getSeries = (keys: string[]) => {
-      const { global, yAxis, series } = config.value;
-
+    const getSeries = () => {
+      const { global, label, series } = config.value
+      const { values } = chartData.value
       return series.map((item, idx) => {
-        const sname = keys[idx]
-        let data = []
-        if (sname) {
-          data = chartData.value[sname].map(m => {
-            return {
-              value: m[dv_field.value.y],
-              dataRef: m ?? {},
-            }
-          })
-        }
-        if (item.type === 'bar') {
-          return {
-            type: item.type,
-            name: item.name,
-            label: {
-              show: item.label.show,
-              ...item.label.textStyle,
-              offset: [item.label.offset.x, item.label.offset.y],
-              rotate: item.label.rotate,
-              textBorderColor: item.label.stroke.color,
-              textBorderWidth: item.label.stroke.width,
-
-              // formatter 函数变化时，并不会更新视图，所以平铺到 option 里
-              field: item.label.field,
-              valueFormat: item.label.valueFormat,
-              prefix: item.label.describe.prefix,
-              suffix: item.label.describe.suffix,
-              formatter: (params: any) => {
-                let val = params.data.dataRef[item.label.field] ?? params.value
-                if (yAxis.type === 'value') {
-                  val = valueFormater(val, item.label.valueFormat)
-                }
-                return item.label.describe.prefix + val + item.label.describe.suffix
-              },
-            },
-            itemStyle: {
-              color: item.color.type === 'gradient'
-                  ? new graphic.LinearGradient(0, 0, 0, 1, [{
-                    offset: 0,
-                    color: item.color.from,
-                  }, {
-                    offset: 1,
-                    color: item.color.to,
-                  }])
-                  : item.color.value,
-            },
-            barGap: `${global.innerPadding}%`,
-            barCategoryGap: `${global.outerPadding}%`,
-            showBackground: global.background.show,
-            backgroundStyle: {
-              color: global.background.color,
-            },
-            data,
-          }
-        }
-
         return {
           type: item.type,
-          name: item.name || sname,
-          connectNulls: global.connectNulls,
-          lineStyle: {
-            color: item.line.color,
-            type: item.line.style,
-            width: item.line.width,
-            opacity: item.line.opacity,
-          },
-          smooth: item.line.smooth,
-          symbol: item.point.icon,
-          itemStyle: {
-            ...item.point,
-          },
+          name: item.name,
           label: {
-            show: item.label.show,
-            ...item.label.textStyle,
-            offset: [item.label.offset.x, item.label.offset.y],
-            rotate: item.label.rotate,
-            textBorderColor: item.label.stroke.color,
-            textBorderWidth: item.label.stroke.width,
-
-            // formatter 函数变化时，并不会更新视图，所以平铺到 option 里
-            field: item.label.field,
-            valueFormat: item.label.valueFormat,
-            prefix: item.label.describe.prefix,
-            suffix: item.label.describe.suffix,
-            formatter: (params: any) => {
-              let val = params.data.dataRef[item.label.field] ?? params.value
-              if (yAxis.type === 'value') {
-                val = valueFormater(val, item.label.valueFormat)
-              }
-              return item.label.describe.prefix + val + item.label.describe.suffix
-            },
+            show: label.show,
+            position: label.position,
+            ...label.textStyle,
+            offset: [label.offsetX, label.offsetY],
           },
-          data,
+          itemStyle: {
+            color: item.color.type === 'gradient'
+                ? new graphic.LinearGradient(0, 0, 0, 1, [{
+                  offset: 0,
+                  color: item.color.from,
+                }, {
+                  offset: 1,
+                  color: item.color.to,
+                }])
+                : item.color.value,
+          },
+          symbolSize: item.symbolSize,
+          showBackground: global.background.show,
+          backgroundStyle: {
+            color: global.background.color,
+          },
+          data: values.map(v => {
+            const obj = v[idx]
+            return {
+              value: obj ? obj[dv_field.value.y] : null,
+              dataRef: obj ?? {},
+            }
+          }),
         }
       })
     }
-
     const option = computed(() => {
       const { global, xAxis, yAxis, tooltip, legend, animation } = config.value
       const [legendTop, legendLeft] = legend.position.split('-')
@@ -182,12 +124,6 @@ export default defineComponent({
         color: tooltip.pointer.line.color,
       }
 
-      let data = []
-      const keys = Object.keys(chartData.value)
-      console.log('chartData.value=====', chartData.value);
-      if (keys.length > 0) {
-        data = chartData.value[keys[0]].map(m => m[dv_field.value.x])
-      }
       const opts = {
         textStyle: {
           fontFamily: global.fontFamily,
@@ -202,7 +138,6 @@ export default defineComponent({
           },
           padding: [tooltip.background.padding.v, tooltip.background.padding.h],
           backgroundColor: tooltip.background.color,
-          triggerOn: tooltip.triggerOn,
           trigger: tooltip.pointer.show ? 'axis' : 'item',
           axisPointer: {
             type: tooltip.pointer.show ? 'cross' : 'none',
@@ -212,8 +147,7 @@ export default defineComponent({
             lineStyle: pointerLineStyle,
             crossStyle: pointerLineStyle,
           },
-          borderWidth: tooltip.background.borderWidth,
-          borderColor: tooltip.background.borderColor,
+          borderWidth: 0,
         },
         legend: {
           show: legend.show,
@@ -296,13 +230,11 @@ export default defineComponent({
               color: xAxis.grid.line.color,
             },
           },
-          min: xAxis.type === 'value' ? getLimitValue(xAxis.extent.min) : undefined,
-          max: xAxis.type === 'value' ? getLimitValue(xAxis.extent.max) : undefined,
-          data,
+          data: chartData.value.keys,
         },
         yAxis: {
           show: yAxis.show,
-          type: yAxis.type,
+          type: 'value',
           name: yAxis.title.show ? yAxis.title.name : '',
           nameLocation: yAxis.title.location,
           nameRotate: yAxis.title.display.rotate,
@@ -334,15 +266,9 @@ export default defineComponent({
             margin: yAxis.axisLabel.display.margin,
             align: yAxis.axisLabel.align,
             ...yAxis.axisLabel.textStyle,
-            timeFormat: yAxis.axisLabel.timeFormat,
             valueFormat: yAxis.axisLabel.valueFormat,
             formatter: (val: string) => {
-              if (yAxis.type === 'time') {
-                return dayjs(val).format(yAxis.axisLabel.timeFormat)
-              } else if (yAxis.type === 'value') {
-                return valueFormater(val, yAxis.axisLabel.valueFormat)
-              }
-              return val
+              return valueFormater(val, yAxis.axisLabel.valueFormat)
             },
           },
           splitLine: {
@@ -355,14 +281,15 @@ export default defineComponent({
               color: yAxis.grid.line.color,
             },
           },
-          min: yAxis.type === 'value' ? getLimitValue(yAxis.extent.min) : undefined,
-          max: yAxis.type === 'value' ? getLimitValue(yAxis.extent.max) : undefined,
+          min: getLimitValue(yAxis.extent.min),
+          max: getLimitValue(yAxis.extent.max),
+          splitNumber: yAxis.splitNumber > 0 ? yAxis.splitNumber : null,
         },
         animation: animation.enabled,
         animationDuration: animation.duration,
         animationEasing: animation.easing,
         animationDelay: animation.delay,
-        series: getSeries(keys),
+        series: getSeries(),
       }
       return opts
     })
@@ -375,7 +302,6 @@ export default defineComponent({
             ...params.data.dataRef,
             x: params.name,
             y: params.value,
-            s: params.seriesName,
           })
     }
 
@@ -384,6 +310,8 @@ export default defineComponent({
       option,
       onClick,
     }
-  },
+
+  }
 })
+
 </script>

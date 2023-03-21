@@ -23,7 +23,7 @@ export class VDvDecorate6 extends DatavComponent {
   actions: Record<string, DataEventConfig>
 
   constructor() {
-    super('Decoration', { w: 200, h: 200 })
+    super('DvDecorate6', { w: 200, h: 200 })
 
     this.initData()
   }

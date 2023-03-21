@@ -33,12 +33,19 @@ import VDvBorder10 from './datav/border/dv-border-10'
 import VDvBorder11 from './datav/border/dv-border-11'
 import VDvBorder12 from './datav/border/dv-border-12'
 
-import VDvDecorate1 from './datav/decorates/dv- decorate-1'
-import VDvDecorate2 from './datav/decorates/dv- decorate-2'
-import VDvDecorate3 from './datav/decorates/dv- decorate-3'
-import VDvDecorate4 from './datav/decorates/dv- decorate-4'
-import VDvDecorate5 from './datav/decorates/dv- decorate-5'
-import VDvDecorate6 from './datav/decorates/dv- decorate-6'
+import VDvDecorate1 from './datav/decorates/dv-decorate-1'
+import VDvDecorate2 from './datav/decorates/dv-decorate-2'
+import VDvDecorate3 from './datav/decorates/dv-decorate-3'
+import VDvDecorate4 from './datav/decorates/dv-decorate-4'
+import VDvDecorate5 from './datav/decorates/dv-decorate-5'
+import VDvDecorate6 from './datav/decorates/dv-decorate-6'
+import VInfeedBar from './bar/infeed-bar'
+import VArcBar from './bar/arc-bar'
+import VBasicArea from './line/basic-area'
+import VBasicPie from './pie/basic-pie'
+import VProcess from './pie/process'
+import VWaterPolo from './bar/water-polo'
+import VBasicScatter from './scatter/basic-scatter'
 // -- prepend placeholder 1 --
 
 const components = [
@@ -81,6 +88,13 @@ const components = [
   VDvDecorate4,
   VDvDecorate5,
   VDvDecorate6,
+  VInfeedBar,
+  VArcBar,
+  VBasicArea,
+  VBasicPie,
+  VProcess,
+  VWaterPolo,
+  VBasicScatter,
 // -- prepend placeholder 2 --
 ]
 

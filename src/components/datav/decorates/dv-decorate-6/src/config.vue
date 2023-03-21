@@ -29,14 +29,14 @@
 
 <script lang='ts'>
 import { defineComponent, PropType, toRef } from 'vue'
-import { Decoration, presetImages } from './decoration'
+import { VDvDecorate6, presetImages } from './dv-decorate-6'
 import { BorderImage } from '@/components/_models/border-image'
 
 export default defineComponent({
   name: 'VDecorationProp',
   props: {
     com: {
-      type: Object as PropType<Decoration>,
+      type: Object as PropType<VDvDecorate6>,
       required: true,
     },
   },
