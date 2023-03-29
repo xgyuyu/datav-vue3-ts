@@ -283,11 +283,11 @@ export const relation: ComDataType = {
   icon: 'v-icon-relation',
   data: [
     {
-      name: 'VTree',
+      name: 'VTreeLine',
       alias: '树图',
       img: `${import.meta.env.VITE_APP_CDN}/com/tree.png`,
       thum: `${import.meta.env.VITE_APP_CDN}/com/tree.png`,
-      used: false,
+      used: true,
     },
   ],
 }
@@ -340,19 +340,22 @@ export const map: ComDataType = {
           used: true,
         },
       ],
-    }, {
-      name: 'VMap2d',
-      alias: '基础平面地图',
+    },
+    {
+      name: 'VMapA',
+      alias: '高德地图',
       img: `${import.meta.env.VITE_APP_CDN}/com/2d-map-664-288.jpg`,
       thum: `${import.meta.env.VITE_APP_CDN}/com/2d-map-664-288.jpg`,
-      used: false,
-    }, {
-      name: 'VMap3d',
-      alias: '3D平面地图',
-      img: `${import.meta.env.VITE_APP_CDN}/com/3d-map-664-288.jpg`,
-      thum: `${import.meta.env.VITE_APP_CDN}/com/3d-map-664-288.jpg`,
-      used: false,
-    }, {
+      used: true,
+    },
+    // {
+    //   name: 'VMap3d',
+    //   alias: '3D平面地图',
+    //   img: `${import.meta.env.VITE_APP_CDN}/com/3d-map-664-288.jpg`,
+    //   thum: `${import.meta.env.VITE_APP_CDN}/com/3d-map-664-288.jpg`,
+    //   used: false,
+    // },
+    {
       name: 'VThreeEarth',
       alias: '3D地球',
       img: `${import.meta.env.VITE_APP_CDN}/com/3d-earth-664-288.jpg`,
@@ -462,7 +465,7 @@ export const interactData: ComDataType = {
       alias: '进度条',
       img: `${import.meta.env.VITE_APP_CDN}/com/percentage-bar-332-144.png`,
       thum: `${import.meta.env.VITE_APP_CDN}/com-thum/percentage-bar-370-208.png`,
-      used: false,
+      used: true,
     },
   ],
 }
@@ -544,7 +547,7 @@ export const classifications: ComDataType[] = [
     type: 'interact',
     name: '控件',
     icon: 'v-icon-interact',
-    data: [button, select, interactData],
+    data: [button, interactData],
   },
   {
     type: 'media',

@@ -53,6 +53,10 @@ export function toObject<T>(arr: Array<T>) {
   return res
 }
 
+export function isArray(p: any): p is [] {
+  return Array.isArray(p)
+}
+
 export function ArrayToObject<T extends string | Object>(arr: Array<T>, key?: string, value?: string) {
   const map: Record<string, string> = Object.create(null)
   if (key && value) {

@@ -46,6 +46,9 @@ import VBasicPie from './pie/basic-pie'
 import VProcess from './pie/process'
 import VWaterPolo from './bar/water-polo'
 import VBasicScatter from './scatter/basic-scatter'
+import VTreeLine from './tree/tree-line'
+import VPercentageBar from './pie/percentage-bar'
+import VMapA from './map/map-a'
 // -- prepend placeholder 1 --
 
 const components = [
@@ -95,6 +98,9 @@ const components = [
   VProcess,
   VWaterPolo,
   VBasicScatter,
+  VTreeLine,
+  VPercentageBar,
+  VMapA,
 // -- prepend placeholder 2 --
 ]
 

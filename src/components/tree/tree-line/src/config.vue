@@ -1,0 +1,168 @@
+<template>
+  <div class="setting-panel-gui">
+    <g-field-collapse
+        label="全局"
+    >
+      <g-field
+          :level="2"
+          tooltip="请选择您系统有的字体，如果您系统无此字体，标题将会显示默认字体"
+          label="字体"
+      >
+        <g-select
+            v-model="config.global.fontFamily"
+            :data="fontFamilys"
+        />
+      </g-field>
+      <g-field
+          :level="2"
+          label="边距"
+          :is-flat="true"
+      >
+        <g-input-number
+            v-model="config.global.margin.top"
+            :min="-1000"
+            :max="1000"
+            :step="1"
+            suffix="px"
+            inline="inline"
+            label="顶部"
+        />
+        <g-input-number
+            v-model="config.global.margin.bottom"
+            :min="-1000"
+            :max="1000"
+            :step="1"
+            suffix="px"
+            inline="inline"
+            label="底部"
+        />
+        <g-input-number
+            v-model="config.global.margin.left"
+            :min="-1000"
+            :max="1000"
+            :step="1"
+            suffix="px"
+            inline="inline"
+            label="左侧"
+        />
+        <g-input-number
+            v-model="config.global.margin.right"
+            :min="-1000"
+            :max="1000"
+            :step="1"
+            suffix="px"
+            inline="inline"
+            label="右侧"
+        />
+      </g-field>
+      <g-field
+          :level="2"
+          label="组内间距"
+      >
+        <g-slider
+            v-model="config.global.innerPadding"
+            :min="-1000"
+            :max="1000"
+            :step="1"
+            suffix="px"
+        />
+      </g-field>
+      <g-field
+          :level="2"
+          label="组间间距"
+      >
+        <g-slider
+            v-model="config.global.outerPadding"
+            :min="-1000"
+            :max="1000"
+            :step="1"
+            suffix="px"
+        />
+      </g-field>
+      <g-field
+          :level="2"
+          tooltip="不设时自适应，可以是绝对值例如 40 或者百分数例如 60%。"
+          label="柱子宽度"
+      >
+        <g-select-suggest
+            v-model="config.global.barWidth"
+            :data="selectSuggests"
+            :filters="['auto']"
+        />
+      </g-field>
+      <g-field-collapse
+          v-model="config.global.background.show"
+          :toggle="true"
+          label="背景色"
+      >
+        <g-field
+            :level="2"
+            label="颜色"
+        >
+          <g-color-picker
+              v-model="config.global.background.color"
+          />
+        </g-field>
+      </g-field-collapse>
+    </g-field-collapse>
+    <g-field
+        label="文本样式"
+        :is-flat="true"
+    >
+      <g-input-number
+          v-model="config.series[0].label.textStyle.fontSize"
+          :min="12"
+          :max="100"
+          :step="1"
+          suffix="px"
+          inline="inline"
+          label="字号"
+      />
+      <g-color-picker
+          v-model="config.series[0].label.textStyle.color"
+          inline="inline"
+          label="颜色"
+      />
+      <g-select
+          v-model="config.series[0].label.textStyle.fontWeight"
+          :data="fontWeights"
+          inline="inline"
+          label="字体粗细"
+      />
+    </g-field>
+    <g-field
+        label="点的大小"
+        :is-flat="true"
+    >
+      <g-input-number
+          v-model="config.series[0].symbolSize"
+          :min="4"
+          :max="100"
+          :step="1"
+          inline="inline"
+          label="字号"
+      />
+    </g-field>
+  </div>
+</template>
+<script lang='ts'>
+import { defineComponent, PropType, toRef } from 'vue'
+import { fontWeights } from '@/data/select-options'
+import { TreeLine } from './tree-line'
+export default defineComponent({
+  name: 'VTreeLineProp',
+  props: {
+    com: {
+      type: Object as PropType<TreeLine>,
+      required: true,
+    },
+  },
+  setup(props) {
+    const config = toRef(props.com, 'config')
+    return {
+      config,
+      fontWeights,
+    }
+  }
+})
+</script>
