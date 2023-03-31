@@ -49,6 +49,7 @@ import VBasicScatter from './scatter/basic-scatter'
 import VTreeLine from './tree/tree-line'
 import VPercentageBar from './pie/percentage-bar'
 import VMapA from './map/map-a'
+import VImgCarousel from './media/img-carousel'
 // -- prepend placeholder 1 --
 
 const components = [
@@ -101,6 +102,7 @@ const components = [
   VTreeLine,
   VPercentageBar,
   VMapA,
+  VImgCarousel,
 // -- prepend placeholder 2 --
 ]
 

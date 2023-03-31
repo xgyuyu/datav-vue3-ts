@@ -205,7 +205,7 @@ export default defineComponent({
     ElTabPane,
   },
   setup(props) {
-    let currentInstance = ''
+    let currentInstance = null
     onMounted(() => {
       currentInstance = getCurrentInstance()
     })

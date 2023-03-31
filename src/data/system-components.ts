@@ -481,17 +481,26 @@ export const material: ComDataType = {
       img: `${import.meta.env.VITE_APP_CDN}/com/bg-box-334-144.png`,
       thum: `${import.meta.env.VITE_APP_CDN}/com-thum/bg-box-370-208.png`,
       used: true,
-    }, {
-      name: 'VBorderBox',
-      alias: '边框',
-      img: `${import.meta.env.VITE_APP_CDN}/com/border-box-162-116.png`,
-      thum: `${import.meta.env.VITE_APP_CDN}/com-thum/border-box-370-208.png`,
-      used: true,
-    }, {
+    },
+    // {
+    //   name: 'VBorderBox',
+    //   alias: '边框',
+    //   img: `${import.meta.env.VITE_APP_CDN}/com/border-box-162-116.png`,
+    //   thum: `${import.meta.env.VITE_APP_CDN}/com-thum/border-box-370-208.png`,
+    //   used: true,
+    // },
+    {
       name: 'VMainImg',
       alias: '单张图片',
       img: `${import.meta.env.VITE_APP_CDN}/com/main-img-334-144.png`,
       thum: `${import.meta.env.VITE_APP_CDN}/com-thum/main-img-370-208.png`,
+      used: true,
+    },
+    {
+      name: 'VImgCarousel',
+      alias: '轮播图',
+      img: `./img/imgCarousel.png`,
+      thum: `./img/imgCarousel.png`,
       used: true,
     },
   ],

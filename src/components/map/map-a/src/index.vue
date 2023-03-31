@@ -73,8 +73,6 @@ const initMap = (newData: any) => {
       viewMode: option.value.viewMode, // 地图模式
       willReadFrequently: true
     })
-    console.log('option.value.amapStyleKey=====', option.value.amapStyleKey);
-    console.log('mapIns=====', mapIns);
     dataHandle(dataset)
   }).catch(e => {})
 }
