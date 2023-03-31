@@ -56,7 +56,8 @@ export class VDvBorder9 extends DatavComponent {
 
     this.events = {}
     this.actions = {}
-
+    this.apis = {}
+    this.apiData = {}
     return this
   }
 

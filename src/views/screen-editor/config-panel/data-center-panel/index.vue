@@ -40,6 +40,7 @@ export default defineComponent({
       return Object.keys(com.value.apis)
     })
 
+    console.log('dataKeys=====', dataKeys);
     const activeName = ref(dataKeys.value[0])
 
     provide(changePanelInjectionKey, (panelName: string) => {

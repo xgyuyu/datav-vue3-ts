@@ -56,7 +56,8 @@ export class VDvDecorate5 extends DatavComponent {
     })
 
     setApiData(this)
-
+    this.apis = {}
+    this.apiData = {}
     this.events = {}
     this.actions = {}
 
