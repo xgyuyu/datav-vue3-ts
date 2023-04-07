@@ -50,6 +50,11 @@ import VTreeLine from './tree/tree-line'
 import VPercentageBar from './pie/percentage-bar'
 import VMapA from './map/map-a'
 import VImgCarousel from './media/img-carousel'
+import VDvBorder13 from './datav/border/dv-border-13'
+import VCadar from './chart/cadar'
+import VFunnel from './chart/funnel'
+import VTitleBg from './datav/title-bg'
+import VPie3d from './pie/pie3d'
 // -- prepend placeholder 1 --
 
 const components = [
@@ -85,6 +90,7 @@ const components = [
   VDvBorder10,
   VDvBorder11,
   VDvBorder12,
+  VDvBorder13,
 
   VDvDecorate1,
   VDvDecorate2,
@@ -103,6 +109,10 @@ const components = [
   VPercentageBar,
   VMapA,
   VImgCarousel,
+  VCadar,
+  VFunnel,
+  VTitleBg,
+  VPie3d,
 // -- prepend placeholder 2 --
 ]
 

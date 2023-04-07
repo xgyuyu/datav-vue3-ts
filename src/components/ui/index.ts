@@ -38,6 +38,7 @@ const install = (app: App): void => {
   app.component('GMonacoEditor', loadAsyncComponent(() => import('./monaco-editor')))
 
   app.component('ChartGlobImage', loadAsyncComponent(() => import('./chart-glob-image')))
+  app.component('ImgModal', loadAsyncComponent(() => import('./img-modal')))
 
   plugins.forEach(plugin => {
     app.use(plugin)

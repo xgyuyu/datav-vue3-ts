@@ -136,6 +136,13 @@ export const datavBorderCom: ComDataType = {
       thum: './img/border13.png',
       used: true,
     },
+    {
+      name: 'VDvBorder13',
+      alias: '边框13',
+      img: `${import.meta.env.VITE_APP_CDN}/com/border-box-162-116.png`,
+      thum: `${import.meta.env.VITE_APP_CDN}/com-thum/border-box-370-208.png`,
+      used: true,
+    },
   ]
 }
 
@@ -189,11 +196,26 @@ export const datavDecoratesCom: ComDataType = {
     {
       name: 'VDvDecorate6',
       alias: '装饰6',
-      img: './img/decorates06.png',
-      thum: './img/decorates06.png',
+      img: `${import.meta.env.VITE_APP_CDN}/com/decoration-162-116.png`,
+      thum: `${import.meta.env.VITE_APP_CDN}/com-thum/decoration-370-208.png`,
       used: true,
     },
   ]
+}
+
+export const titleBg: ComDataType = {
+  type: 'datav',
+  name: '主标题背景',
+  icon: 'v-icon-datav-com',
+  data: [
+    {
+      name: 'VTitleBg',
+      alias: '主标题背景',
+      img: `./img/title.jpg`,
+      thum: `./img/title.jpg`,
+      used: true,
+    },
+  ],
 }
 
 export const horizontalBar: ComDataType = {
@@ -267,11 +289,19 @@ export const pie: ComDataType = {
       img: `${import.meta.env.VITE_APP_CDN}/com/basic-pie-160-116.png`,
       thum: `${import.meta.env.VITE_APP_CDN}/com-thum/basic-pie-368-208.png`,
       used: true,
-    }, {
+    },
+    {
       name: 'VProcess',
       alias: '指标占比饼图',
       img: `${import.meta.env.VITE_APP_CDN}/com/pie-one-value-160-116.png`,
       thum: `${import.meta.env.VITE_APP_CDN}/com-thum/pie-one-value-368-208.png`,
+      used: true,
+    },
+    {
+      name: 'VPie3d',
+      alias: '3d饼图',
+      img: './img/pie3d.jpg',
+      thum: './img/pie3d.jpg',
       used: true,
     },
   ],
@@ -302,6 +332,20 @@ export const chart: ComDataType = {
       alias: '词云',
       img: `${import.meta.env.VITE_APP_CDN}/com/word-cloud-160-116.png`,
       thum: `${import.meta.env.VITE_APP_CDN}/com-thum/word-cloud-370-208.png`,
+      used: true,
+    },
+    {
+      name: 'VCadar',
+      alias: '雷达图',
+      img: './img/radar.png',
+      thum: './img/radar.png',
+      used: true,
+    },
+    {
+      name: 'VFunnel',
+      alias: '漏斗图',
+      img: './img/funnel.png',
+      thum: './img/funnel.png',
       used: true,
     },
   ],
@@ -538,7 +582,7 @@ export const classifications: ComDataType[] = [
     type: 'DataV',
     name: 'DataV',
     icon: 'v-icon-datav-com',
-    data: [datavBorderCom, datavDecoratesCom],
+    data: [datavBorderCom, datavDecoratesCom, titleBg],
   },
   {
     type: 'text',

@@ -123,8 +123,7 @@ export default defineComponent({
     const visible = ref(false)
     const visiblePreview = ref(false)
     const apiType = ApiType
-    const datasources = Object.entries(createDataSources())
-      .map(([value, label]) => ({ value, label }))
+    const datasources = Object.entries(createDataSources()).map(([value, label]) => ({ value, label }))
 
     const open = () => {
       visible.value = true

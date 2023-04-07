@@ -10,8 +10,10 @@ import { DataEventConfig } from '@/components/_models/data-event'
 export class VDvDecorate6 extends DatavComponent {
   config = {
     global: {
-      img: 'gif1',
+      img: 'https://img.alicdn.com/tps/TB1tFMtPXXXXXXyXpXXXXXXXXXX-1920-1080.gif',
       opacity: 1,
+      isRotate: false,
+      dur: 4,
     },
   }
 
@@ -39,6 +41,57 @@ export class VDvDecorate6 extends DatavComponent {
 
   async loadData() {}
 }
+
+export const decorateArr = [
+  'https://img.alicdn.com/tps/TB1tFMtPXXXXXXyXpXXXXXXXXXX-1920-1080.gif',
+  'https://img.alicdn.com/tps/TB1XLAgPXXXXXbCXFXXXXXXXXXX-1080-824.gif',
+  'https://img.alicdn.com/tps/TB12FP6PXXXXXczXVXXXXXXXXXX-1626-356.gif',
+  'https://img.alicdn.com/tps/TB1ZXD8PXXXXXX1aXXXXXXXXXXX-94-1461.gif',
+  'https://img.alicdn.com/tps/TB1Z8MHPFXXXXacaXXXXXXXXXXX-500-54.gif',
+  'https://img.alicdn.com/tps/TB1tIIKPFXXXXXIXVXXXXXXXXXX-500-64.gif',
+  'https://img.alicdn.com/tfs/TB15JPjtMTqK1RjSZPhXXXfOFXa-280-800.png',
+  'https://img.alicdn.com/tfs/TB1_PYmtMHqK1RjSZJnXXbNLpXa-254-800.png',
+  'https://img.alicdn.com/tfs/TB16KbftSzqK1RjSZPxXXc4tVXa-800-171.png',
+  'https://img.alicdn.com/tfs/TB1Zo2ntQvoK1RjSZFwXXciCFXa-800-103.png',
+  'https://img.alicdn.com/tfs/TB1R7fqtMHqK1RjSZFkXXX.WFXa-800-143.png',
+  'https://img.alicdn.com/tfs/TB1A26ntHvpK1RjSZFqXXcXUVXa-800-154.png',
+  'https://img.alicdn.com/tfs/TB19EDvtNYaK1RjSZFnXXa80pXa-254-800.png',
+  'https://img.alicdn.com/tfs/TB115YhtMDqK1RjSZSyXXaxEVXa-800-143.png',
+  'https://img.alicdn.com/tfs/TB1F3bqtQzoK1RjSZFlXXai4VXa-113-800.png',
+  'https://img.alicdn.com/tfs/TB1pZLmtFzqK1RjSZFCXXbbxVXa-840-700.png',
+  'https://img.alicdn.com/tfs/TB1NT_ltFzqK1RjSZFoXXbfcXXa-368-800.png',
+  'https://img.alicdn.com/tfs/TB1YUbltFzqK1RjSZFoXXbfcXXa-800-103.png',
+  'https://img.alicdn.com/tfs/TB1AgnntQvoK1RjSZPfXXXPKFXa-800-86.png',
+  'https://img.alicdn.com/tfs/TB1mtbmtFzqK1RjSZFCXXbbxVXa-456-800.png',
+  'https://img.alicdn.com/tfs/TB1eOYKtNnaK1RjSZFtXXbC2VXa-132-800.png',
+  'https://img.alicdn.com/tfs/TB101HktSzqK1RjSZFHXXb3CpXa-184-800.png',
+  'https://img.alicdn.com/tfs/TB1t_PftRLoK1RjSZFuXXXn0XXa-800-800.png',
+  'https://img.alicdn.com/tfs/TB1KtritHPpK1RjSZFFXXa5PpXa-254-800.png',
+  'https://img.alicdn.com/tfs/TB1oujktMHqK1RjSZFPXXcwapXa-500-500.png',
+  'https://img.alicdn.com/tfs/TB1WxTntQvoK1RjSZPfXXXPKFXa-1000-800.png',
+  'https://img.alicdn.com/tfs/TB1aQPltMHqK1RjSZFgXXa7JXXa-800-800.png',
+  'https://img.alicdn.com/tfs/TB1Y6zntHvpK1RjSZFqXXcXUVXa-800-800.png',
+  'https://img.alicdn.com/tfs/TB1OhvktMHqK1RjSZFPXXcwapXa-800-800.png',
+  'https://img.alicdn.com/tfs/TB1AgnntQvoK1RjSZPfXXXPKFXa-800-86.png',
+  'https://img.alicdn.com/tfs/TB1aU_itNTpK1RjSZFGXXcHqFXa-800-800.png',
+  'https://img.alicdn.com/tfs/TB1iFrotQPoK1RjSZKbXXX1IXXa-1200-1200.png',
+  'https://img.alicdn.com/tfs/TB1uSTjtH2pK1RjSZFsXXaNlXXa-800-800.png',
+  'https://img.alicdn.com/tfs/TB1nXLptQvoK1RjSZFDXXXY3pXa-800-800.png',
+  'https://img.alicdn.com/tfs/TB1ZMDntHrpK1RjSZTEXXcWAVXa-800-200.png',
+  'https://img.alicdn.com/tfs/TB1MtTmtFzqK1RjSZFoXXbfcXXa-800-200.png',
+  'https://img.alicdn.com/tfs/TB1UffotQvoK1RjSZFwXXciCFXa-800-200.png',
+  'https://img.alicdn.com/tfs/TB1LdnitSzqK1RjSZFLXXcn2XXa-800-200.png',
+  'https://img.alicdn.com/tfs/TB1o.fKtNnaK1RjSZFtXXbC2VXa-800-200.png',
+  'https://img.alicdn.com/tfs/TB19K_mtSzqK1RjSZFpXXakSXXa-800-200.png',
+  'https://img.alicdn.com/tfs/TB1tefhtNTpK1RjSZR0XXbEwXXa-300-800.png',
+  'https://img.alicdn.com/tfs/TB1MAYktSzqK1RjSZFHXXb3CpXa-800-200.png',
+  'https://img.alicdn.com/tfs/TB1VefitSzqK1RjSZFLXXcn2XXa-800-65.png',
+  'https://img.alicdn.com/tfs/TB1iirptNTpK1RjSZFMXXbG_VXa-800-200.png',
+  'https://img.alicdn.com/tfs/TB1lFbktH2pK1RjSZFsXXaNlXXa-800-800.png',
+  'https://img.alicdn.com/tfs/TB1m7zmtFzqK1RjSZFCXXbbxVXa-800-200.png',
+  'https://img.alicdn.com/tfs/TB1Df6mtFzqK1RjSZFoXXbfcXXa-800-200.png',
+  'https://img.alicdn.com/tfs/TB1sg6mtSzqK1RjSZFpXXakSXXa-800-800.png',
+]
 
 export const presetImages: {
   [key: string]: {

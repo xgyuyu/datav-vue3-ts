@@ -140,21 +140,31 @@ export const getUUID = (randomLength = 10) => {
   return Number(Math.random().toString().substring(2, randomLength) + Date.now()).toString(36)
 }
 
-// * 开启加载
-export const loadingStart = () => {
-  window['$loading'].start()
-}
+// // * 开启加载
+// export const loadingStart = () => {
+//   window['$loading'].start()
+// }
+//
+// // * 加载结束
+// export const loadingFinish = () => {
+//   setTimeout(() => {
+//     window['$loading'].finish()
+//   })
+// }
+//
+// // * 加载错误
+// export const loadingError = () => {
+//   setTimeout(() => {
+//     window['$loading'].error()
+//   })
+// }
 
-// * 加载结束
-export const loadingFinish = () => {
-  setTimeout(() => {
-    window['$loading'].finish()
-  })
-}
 
-// * 加载错误
-export const loadingError = () => {
-  setTimeout(() => {
-    window['$loading'].error()
-  })
+/**
+ * * file转url
+ */
+export const fileToUrl = (file: File): string => {
+  const Url = URL || window.URL || window.webkitURL
+  const ImageUrl = Url.createObjectURL(file)
+  return ImageUrl
 }

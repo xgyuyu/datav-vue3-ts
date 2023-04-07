@@ -26,7 +26,11 @@
             <g-color-picker v-model="pageConfig.bgcolor" />
           </g-field>
           <g-field label="背景图">
-            <g-upload-image v-model="pageConfig.bgimage" />
+            <g-upload-image v-model="pageConfig.bgimage">
+              <n-icon @click="setImgModal" color="#fff" style="cursor: pointer;background: #2483ff">
+                <IconImg />
+              </n-icon>
+            </g-upload-image>
           </g-field>
           <g-field label="重置">
             <n-button size="tiny" :focusable="false" @click="resetBGImage">
@@ -34,7 +38,11 @@
             </n-button>
           </g-field>
         </div>
-
+        <img-modal
+          :showModal="showImgModal"
+          :imgArr="imgArr"
+          @clickImg="changeImgBg"
+        />
         <div class="page-config-wp">
           <g-field label="页面缩放方式">
             <n-radio-group v-model:value="pageConfig.zoomMode" name="zoomMode" size="small">
@@ -69,12 +77,10 @@
             <n-upload
               abstract
               accept="image/*"
-              :action="cover.uploadHost"
               :multiple="false"
               :show-file-list="false"
-              :data="form"
               @before-upload="beforeUpload"
-              @finish="finishUpload"
+              :customRequest="customRequest"
             >
               <n-button-group>
                 <n-button
@@ -120,7 +126,7 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, ref, computed } from 'vue'
+import {defineComponent, ref, computed, nextTick} from 'vue'
 import { UploadFileInfo, useMessage } from 'naive-ui'
 import html2canvas from 'html2canvas'
 import { globalConfig } from '@/config'
@@ -129,8 +135,8 @@ import { useEditorStore } from '@/store/editor'
 import { ZoomMode } from '@/domains/editor'
 import { uploadHost, previewHost, validAllowImg, dataURLtoBlob } from '@/utils/upload-util'
 import { getTokenByEnv, upload } from '@/api/qiniu'
-import { generateId } from '@/utils/util'
-import { IconFullscreen, IconAdaptAuto, IconAdaptWidth, IconAdaptHeight, IconStop } from '@/icons'
+import {fileToUrl, generateId} from '@/utils/util'
+import { IconFullscreen, IconAdaptAuto, IconAdaptWidth, IconAdaptHeight, IconStop, IconImg } from '@/icons'
 
 const cdn = import.meta.env.VITE_APP_CDN
 
@@ -142,6 +148,7 @@ export default defineComponent({
     IconAdaptWidth,
     IconAdaptHeight,
     IconStop,
+    IconImg,
   },
   setup() {
     const nMessage = useMessage()
@@ -162,6 +169,8 @@ export default defineComponent({
       uploadHost,
     })
     const uploadLoading = ref(false)
+    const showImgModal = ref(false)
+    const imgArr = ref([])
     const form = ref({
       key: '',
       token: '',
@@ -171,19 +180,19 @@ export default defineComponent({
       pageConfig.value.bgimage = `${cdn}/datav/bj.png`
     }
 
-    const uploadCover = async (blob: Blob) => {
+    const uploadCover = async (blob) => {
       try {
         toolbarStore.addLoading()
-        const token = await getTokenByEnv()
-        const formData = new FormData()
-        formData.append('file', blob)
-        formData.append('token', token)
-        formData.append('key', `upload/${generateId()}_screenshot.png`)
+        // const token = await getTokenByEnv()
+        // const formData = new FormData()
+        // formData.append('file', blob)
+        // formData.append('token', token)
+        // formData.append('key', `upload/${generateId()}_screenshot.png`)
 
-        const res = await upload(uploadHost, formData)
-        if (res) {
-          pageConfig.value.screenshot = `${previewHost}/${res.data.key}`
-        }
+        pageConfig.value.screenshot = blob
+        // const res = await upload(uploadHost, formData)
+        // if (res) {
+        // }
       } catch (error) {
         throw error
       } finally {
@@ -213,7 +222,9 @@ export default defineComponent({
           })
 
           dom.style.transform = transform
-          await uploadCover(dataURLtoBlob(res.toDataURL('image/jpeg', 0.8)))
+          let img = res.toDataURL('image/jpeg', 0.8)
+          // console.log('img=====', img);
+          await uploadCover(img)
         } catch (error) {
           nMessage.error(error.message)
         } finally {
@@ -245,16 +256,25 @@ export default defineComponent({
       return false
     }
 
-    const finishUpload = (options: { file: UploadFileInfo; event: Event; }) => {
+    const customRequest = (options) => {
       toolbarStore.removeLoading()
       uploadLoading.value = false
-
-      const res = JSON.parse((options.event.target as XMLHttpRequest).response)
-      if (res.error) {
-        nMessage.error(res.error)
-      } else {
-        pageConfig.value.screenshot = `${previewHost}/${res.key}`
-      }
+      const { file } = options
+      nextTick(() => {
+        if (file.file) {
+          const ImageUrl = fileToUrl(file.file)
+          pageConfig.value.screenshot = ImageUrl
+        } else {
+          window['$message'].error('添加图片失败，请稍后重试！')
+        }
+      })
+      //
+      // const res = JSON.parse((options.event.target as XMLHttpRequest).response)
+      // if (res.error) {
+      //   nMessage.error(res.error)
+      // } else {
+      //   pageConfig.value.screenshot = `${previewHost}/${res.key}`
+      // }
     }
 
     const onPaste = async (ev: ClipboardEvent) => {
@@ -277,6 +297,18 @@ export default defineComponent({
       editorStore.autoCanvasScale(() => toolbarStore.getPanelOffset)
     }
 
+    const changeImgBg = (item) => {
+      showImgModal.value = false
+      pageConfig.value.bgimage = item
+    }
+
+    const setImgModal = () => {
+      showImgModal.value = true
+      const arr1 = Array.from({length: 3}).map((v, i) => `./source/bg${i+1}.png`);
+      const arr2 = Array.from({length: 11}).map((v, i) => `./source/bg${i+4}.jpeg`);
+      imgArr.value = arr1.concat(arr2)
+    }
+
     return {
       ZoomMode,
       pageConfig,
@@ -287,9 +319,13 @@ export default defineComponent({
       resetBGImage,
       cutCover,
       beforeUpload,
-      finishUpload,
+      customRequest,
       onPaste,
       onSizeChange,
+      setImgModal,
+      imgArr,
+      showImgModal,
+      changeImgBg,
     }
   },
 })

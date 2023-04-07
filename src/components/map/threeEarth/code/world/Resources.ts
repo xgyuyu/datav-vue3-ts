@@ -2,7 +2,6 @@
  * 资源管理和加载
  */
 import { LoadingManager, Texture, TextureLoader } from 'three'
-import { loadingStart, loadingFinish, loadingError } from '@/utils/util'
 import { resources } from './Assets'
 export class Resources {
   private manager!: LoadingManager

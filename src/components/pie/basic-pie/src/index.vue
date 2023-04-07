@@ -154,7 +154,6 @@ watch(() => type, newData => {
           config.value.series[0].radius = '70%'
           config.value.series[0].roseType = false
         } else if (newData.value === 'ring') {
-          console.log('222=====', 222);
           config.value.series[0].radius = ['40%', '65%']
           config.value.series[0].roseType = false
         } else {

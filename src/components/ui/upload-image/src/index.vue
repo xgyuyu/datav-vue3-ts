@@ -18,15 +18,16 @@
           <IconLink />
         </n-icon>
       </template>
+      <template #suffix>
+        <slot></slot>
+      </template>
     </n-input>
     <n-upload
       accept="image/*"
-      :action="action"
       :multiple="false"
       :show-file-list="false"
-      :data="form"
       @before-upload="beforeUpload"
-      @finish="finishUpload"
+      :customRequest="customRequest"
     >
       <n-upload-dragger>
         <n-spin :show="loading">
@@ -60,10 +61,10 @@
 </template>
 
 <script lang='ts' setup>
-import { ref, watch } from 'vue'
+import { ref, watch, nextTick } from 'vue'
 import { useMessage, UploadFileInfo, NInput, NUpload, NIcon, NSpin, NUploadDragger } from 'naive-ui'
 import { UPDATE_MODEL_EVENT } from '@/utils/constants'
-import { generateId } from '@/utils/util'
+import { generateId, fileToUrl } from '@/utils/util'
 import { uploadHost, previewHost, validAllowImg } from '@/utils/upload-util'
 import { getTokenByEnv } from '@/api/qiniu'
 import { IconLink, IconImg } from '@/icons'
@@ -130,15 +131,30 @@ const beforeUpload = async (options: { file: UploadFileInfo; }) => {
   return false
 }
 
-const finishUpload = (options: { file: UploadFileInfo; event?: ProgressEvent; }) => {
-  loading.value = false
+// const finishUpload = (options: { file: UploadFileInfo; event?: ProgressEvent; }) => {
+//   loading.value = false
+//
+//   const res = JSON.parse((options.event.target as XMLHttpRequest).response)
+//   if (res.error) {
+//     nMessage.error(res.error)
+//   } else {
+//     emits(UPDATE_MODEL_EVENT, `${props.previewHost}/${res.key}`)
+//   }
+// }
 
-  const res = JSON.parse((options.event.target as XMLHttpRequest).response)
-  if (res.error) {
-    nMessage.error(res.error)
-  } else {
-    emits(UPDATE_MODEL_EVENT, `${props.previewHost}/${res.key}`)
-  }
+
+// 自定义上传操作
+const customRequest = (options) => {
+  const { file } = options
+  nextTick(() => {
+    if (file.file) {
+      const ImageUrl = fileToUrl(file.file)
+      loading.value = false
+      emits(UPDATE_MODEL_EVENT, ImageUrl)
+    } else {
+      window['$message'].error('添加图片失败，请稍后重试！')
+    }
+  })
 }
 
 const handleInput = (value: string) => {
