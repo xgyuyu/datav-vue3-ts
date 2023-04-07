@@ -298,6 +298,13 @@ export const pie: ComDataType = {
       used: true,
     },
     {
+      name: 'VSemicircle',
+      alias: '半圆饼图',
+      img: './img/semicircle.jpg',
+      thum: './img/semicircle.jpg',
+      used: true,
+    },
+    {
       name: 'VPie3d',
       alias: '3d饼图',
       img: './img/pie3d.jpg',

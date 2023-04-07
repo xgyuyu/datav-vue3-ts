@@ -55,6 +55,7 @@ import VCadar from './chart/cadar'
 import VFunnel from './chart/funnel'
 import VTitleBg from './datav/title-bg'
 import VPie3d from './pie/pie3d'
+import VSemicircle from './pie/semicircle'
 // -- prepend placeholder 1 --
 
 const components = [
@@ -113,6 +114,7 @@ const components = [
   VFunnel,
   VTitleBg,
   VPie3d,
+  VSemicircle,
 // -- prepend placeholder 2 --
 ]
 

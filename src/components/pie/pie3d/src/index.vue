@@ -3,7 +3,7 @@
 </template>
 
 <script lang='ts' setup>
-import { computed, toRef, onMounted, watch, onUnmounted } from 'vue'
+import { computed, toRef, onMounted, watch } from 'vue'
 import highcharts from "highcharts";
 import { useDataCenter, getFieldMap } from '@/components/_mixins/use-data-center'
 import { useApiStore } from '@/store/api'
