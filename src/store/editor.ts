@@ -5,6 +5,7 @@ import { PageConfig, AlignLine } from '@/domains/editor'
 import { getProject } from '@/api/project'
 import { DatavComponent } from '@/components/_models/datav-component'
 import { calcIntersectingLines } from '@/utils/editor'
+import { getLocalData } from '@/utils/util'
 import { useComStore } from './com'
 import { useEventStore } from './event'
 
@@ -78,7 +79,7 @@ export const useEditorStore = defineStore('editor', {
       enable: true,
     },
     alignLine: {
-      enable: false,
+      enable: true,
       show: false,
       top: 0,
       bottom: 0,
@@ -181,9 +182,13 @@ export const useEditorStore = defineStore('editor', {
     async loadScreen(projectId: number) {
       try {
         const eventStore = useEventStore()
-        const { data } = await getProject(projectId)
+        let { data } = await getProject(projectId)
+
         if (data.code === 0) {
-          const { config } = data.data
+          let config = getLocalData(projectId, 'config');
+          if (!config) {
+             config = data.data.config
+          }
           this.setEditorOption({
             screen: {
               id: projectId,

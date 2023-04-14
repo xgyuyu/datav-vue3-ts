@@ -19,6 +19,8 @@
         :imgArr="imgArr"
         imgStyle="width: 80px;height: 80px;margin-right: 10px"
         @clickImg="changeImgBg"
+        @closeModal="closeModal"
+
     />
   </div>
 </template>
@@ -48,15 +50,19 @@ export default defineComponent({
       showImgModal.value = false
       config.value.img = item
     }
+    const closeModal = () => {
+      showImgModal.value = false
+    }
     const setImgModal = () => {
       showImgModal.value = true
-      const arr1 = Array.from({length: 6}).map((v, i) => `./source/border${i+1}.png`);
+      const arr1 = Array.from({length: 14}).map((v, i) => `./source/border${i+1}.png`);
       imgArr.value = borderArr.concat(arr1)
     }
     return {
       config,
       showImgModal,
       imgArr,
+      closeModal,
       changeImgBg,
       setImgModal,
     }

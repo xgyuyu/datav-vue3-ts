@@ -49,9 +49,9 @@ export class MainImg extends DatavComponent {
     try {
       // 组件静态数据来源，当前项目统一管理目录：public/data/*
       // 如：public/data/demo/data.json 简写为 => demo/data
-      const path = ''
-      const res = await getStaticData(this.id, path)
-      this.apiData.source.config.data = JSON.stringify(res.data)
+      // const path = ''
+      // const res = await getStaticData(this.id, path)
+      // this.apiData.source.config.data = JSON.stringify(res.data)
     } catch (error) {
       throw error
     }

@@ -42,6 +42,7 @@
           :showModal="showImgModal"
           :imgArr="imgArr"
           @clickImg="changeImgBg"
+          @closeModal="closeModal"
         />
         <div class="page-config-wp">
           <g-field label="页面缩放方式">
@@ -301,11 +302,13 @@ export default defineComponent({
       showImgModal.value = false
       pageConfig.value.bgimage = item
     }
-
+    const closeModal = () => {
+      showImgModal.value = false
+    }
     const setImgModal = () => {
       showImgModal.value = true
-      const arr1 = Array.from({length: 3}).map((v, i) => `./source/bg${i+1}.png`);
-      const arr2 = Array.from({length: 11}).map((v, i) => `./source/bg${i+4}.jpeg`);
+      const arr1 = Array.from({length: 5}).map((v, i) => `./source/bg${i+1}.png`);
+      const arr2 = Array.from({length: 11}).map((v, i) => `./source/bg${i+1}.jpeg`);
       imgArr.value = arr1.concat(arr2)
     }
 
@@ -325,6 +328,7 @@ export default defineComponent({
       setImgModal,
       imgArr,
       showImgModal,
+      closeModal,
       changeImgBg,
     }
   },

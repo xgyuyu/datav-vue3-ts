@@ -51,6 +51,7 @@
         :imgArr="imgArr"
         imgStyle="width: 80px;height: 80px;margin-right: 10px"
         @clickImg="changeImgBg"
+        @closeModal="closeModal"
     />
   </div>
 </template>
@@ -80,17 +81,20 @@ export default defineComponent({
       showImgModal.value = false
       config.value.global.img = item
     }
-
+    const closeModal = () => {
+      showImgModal.value = false
+    }
     const setImgModal = () => {
       showImgModal.value = true
-      const arr1 = Array.from({length: 18}).map((v, i) => `./source/icon${i+1}.png`);
-      const arr2 = Array.from({length: 41}).map((v, i) => `./source/icon-svg${i+1}.svg`);
+      const arr1 = Array.from({length: 19}).map((v, i) => `./source/icon${i+1}.png`);
+      const arr2 = Array.from({length: 34}).map((v, i) => `./source/icon-svg${i+1}.svg`);
       imgArr.value = decorateArr.concat(arr1).concat(arr2)
     }
     return {
       config,
       showImgModal,
       imgArr,
+      closeModal,
       changeImgBg,
       setImgModal,
     }

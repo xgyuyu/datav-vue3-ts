@@ -33,14 +33,14 @@
           v-model="config.series[0].backgroundStyle.color"
       />
     </g-field>
-    <g-field
-        :level="1"
-        label="数值"
-    >
-      <g-input-number
-          v-model="config.series[0].data[0]" :step="0.01"
-      />
-    </g-field>
+<!--    <g-field-->
+<!--        :level="1"-->
+<!--        label="数值"-->
+<!--    >-->
+<!--      <g-input-number-->
+<!--          v-model="config.series[0].data[0]" :step="0.01"-->
+<!--      />-->
+<!--    </g-field>-->
     <g-field
         :level="1"
         label="文字大小"

@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { DataFilter } from '@/components/_models/data-filter'
 import * as api from '@/api/filter'
 import dayjs from 'dayjs'
+import {getLocalData} from "@/utils/util";
 
 export interface IFilterState {
   dataFilters: DataFilter[]
@@ -15,8 +16,12 @@ export const useFilterStore = defineStore('filter', {
     async request(projectId: number) {
       try {
         const res = await api.getFilters(projectId)
+        let dataFilters = getLocalData(projectId, 'dataFilters');
+        if (!dataFilters) {
+          dataFilters = res.data.data
+        }
         if (res.data.code === 0) {
-          this.dataFilters = res.data.data
+          this.dataFilters = dataFilters
         } else {
           throw Error(res.data.message)
         }

@@ -4,6 +4,7 @@ import { DatavGroup, createGroupConfig, sortGroupConfig } from '@/components/_in
 import { getComs, deleteComs, addCom, copyCom } from '@/api/coms'
 import { MoveType } from '@/domains/editor'
 import { getNewCom } from '@/data/mock-copy'
+import {getLocalData} from "@/utils/util";
 
 export interface IComState {
   coms: DatavComponent[]
@@ -176,6 +177,7 @@ export const useComStore = defineStore('com', {
         }
       })
 
+      console.log('coms=====', coms);
       this.coms = coms
       this.subComs = subComs
     },
@@ -473,9 +475,13 @@ export const useComStore = defineStore('com', {
     },
     async request(projectId: number) {
       try {
-        const res = await getComs(projectId)
+        let res = await getComs(projectId)
         if (res.data.code === 0) {
-          this.load(res.data.data)
+          let data = getLocalData(projectId, 'coms');
+          if (!data) {
+            data = res.data.data
+          }
+          this.load(data)
         } else {
           throw Error(res.data.message)
         }

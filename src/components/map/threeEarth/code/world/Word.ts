@@ -23,7 +23,7 @@ export default class World {
      * 加载资源
      */
     this.option = option
-    this.basic = new Basic(option.dom)
+    this.basic = new Basic(option.dom, {x: 0, y: 30, z: -250})
     this.scene = this.basic.scene
     this.renderer = this.basic.renderer
     this.controls = this.basic.controls

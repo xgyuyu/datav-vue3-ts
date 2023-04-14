@@ -108,6 +108,7 @@ export default defineComponent({
     const nDialog = useDialog()
     const projectStore = useProjectStore()
 
+    console.log('projectStore=====', projectStore);
     const selectedGroupId = ref(-1)
     const loading = ref(true)
     const adding = ref(false)

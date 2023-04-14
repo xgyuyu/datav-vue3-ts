@@ -27,7 +27,7 @@ const dv_data = computed(() => {
 
 // 初始化
 const init = (dataList) => {
-  const { option } = config.value
+  const { option, colorList } = config.value
   highcharts.chart('semicircle', {
     chart: {
       type: 'item',
@@ -43,7 +43,6 @@ const init = (dataList) => {
       layout: "vertical",
       itemStyle: {
         color: "#f4f4f6",
-        fontSize: 12,
       },
     },
     title: {
@@ -55,13 +54,12 @@ const init = (dataList) => {
     credits: {
       enabled: false, // 禁用版权信息
     },
-
     series: [
       {
         type: 'item',
         name: 'Representatives',
-        keys: ['name', 'y', 'label'],
-        data: dataList,
+        keys: ['name', 'y', 'label', 'color'],
+        data: dataList.map((f, fi) => ([...f, colorList[fi]])),
         dataLabels: {
           enabled: true,
           format: '{point.label}'
@@ -88,8 +86,9 @@ onMounted(() => {
 watch(
     () => dv_data.value,
     (newData: any) => {
-      console.log('newData=====', newData);
-      // init(newData)
+      if (newData.length) {
+        init(newData)
+      }
     },
     {
       deep: false
@@ -100,7 +99,18 @@ watch(
 watch(
     () => config.value.option,
     (newData: any) => {
-      init(config.value.dataList)
+      init(dv_data.value.length ? dv_data.value : config.value.dataList)
+    },
+    {
+      deep: true
+    }
+)
+
+// 修改了配置
+watch(
+    () => config.value.colorList,
+    (newData: any) => {
+      init(dv_data.value.length ? dv_data.value : config.value.dataList)
     },
     {
       deep: true
@@ -111,7 +121,7 @@ watch(
 watch(
     () => [attr.value.w, attr.value.h],
     ()=>{
-      init(config.value.dataList)
+      init(dv_data.value.length ? dv_data.value : config.value.dataList)
     },
     {
       deep: true

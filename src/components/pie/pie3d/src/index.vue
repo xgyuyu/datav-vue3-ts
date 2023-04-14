@@ -26,6 +26,7 @@ const dv_data = computed(() => {
 
 // 初始化
 const init = (dataList) => {
+  console.log('dataList=====', dataList);
   let quantity = 0; // 总数
   dataList.forEach((item) => {
     quantity += item.y;
@@ -39,7 +40,7 @@ const init = (dataList) => {
       round = Math.round,
       cos = Math.cos,
       sin = Math.sin,
-      deg2rad = Math.deg2rad;
+      deg2rad = 180;
   highcharts.wrap(highcharts.seriesTypes.pie.prototype, "translate", function (proceed) {
     proceed.apply(this, [].slice.call(arguments, 1));
     // Do not do this if the chart is not 3D
@@ -90,7 +91,7 @@ const init = (dataList) => {
       return ret;
     });
   })(highcharts);
-  const { plotOptions } = config.value
+  const { plotOptions, colorList } = config.value
   highcharts.chart('pie3d', {
     chart: {
       animation: false,
@@ -129,7 +130,6 @@ const init = (dataList) => {
       layout: "vertical",
       itemStyle: {
         color: "#f4f4f6",
-        fontSize: 12,
       },
     },
     title: {
@@ -147,6 +147,7 @@ const init = (dataList) => {
         size: `${plotOptions.size}%`, // 外圈直径大小
         innerSize: plotOptions.innerSize, // 内圈直径大小
         center: [`${plotOptions.center[0]}%`, `${plotOptions.center[1]}%`],
+        colors: colorList,
       },
     },
     credits: {
@@ -175,8 +176,9 @@ onMounted(() => {
 watch(
     () => dv_data.value,
     (newData: any) => {
-      console.log('newData=====', newData);
-      // init(newData)
+      if (newData.length) {
+        init(newData)
+      }
     },
     {
       deep: false
@@ -187,18 +189,27 @@ watch(
 watch(
     () => config.value.plotOptions,
     (newData: any) => {
-      init(config.value.dataList)
+      init(dv_data.value.length ? dv_data.value : config.value.dataList)
     },
     {
       deep: true
     }
 )
-
+// 修改了配置
+watch(
+    () => config.value.colorList,
+    (newData: any) => {
+      init(dv_data.value.length ? dv_data.value : config.value.dataList)
+    },
+    {
+      deep: true
+    }
+)
 // 改变大小
 watch(
     () => [attr.value.w, attr.value.h],
     ()=>{
-      init(config.value.dataList)
+      init(dv_data.value.length ? dv_data.value : config.value.dataList)
     },
     {
       deep: true

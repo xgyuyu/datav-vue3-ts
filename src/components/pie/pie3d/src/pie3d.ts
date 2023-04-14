@@ -50,7 +50,7 @@ export class Pie3d extends DatavComponent {
         bfb: 18,
       },
     ],
-
+    colorList: ['#BE3075', '#EB001F', '#64A12D', '#FFED00', '#000000', '#008AC5', '#009EE0'],
     plotOptions: {
       alpha: 58, //延y轴向内的倾斜角度
       depth: 45,
@@ -92,9 +92,9 @@ export class Pie3d extends DatavComponent {
     try {
       // 组件静态数据来源，当前项目统一管理目录：public/data/*
       // 如：public/data/demo/data.json 简写为 => demo/data
-      // const path = ''
-      // const res = await getStaticData(this.id, path)
-      // this.apiData.source.config.data = JSON.stringify(res.data)
+      const path = 'pie/pie3d'
+      const res = await getStaticData(this.id, path)
+      this.apiData.source.config.data = JSON.stringify(res.data)
     } catch (error) {
       throw error
     }

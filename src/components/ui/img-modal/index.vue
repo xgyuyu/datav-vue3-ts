@@ -1,5 +1,5 @@
 <template>
-  <n-modal v-model:show="props.showModal">
+  <n-modal v-model:show="props.showModal" :on-update:show="closeModal">
     <n-card
         style="width: 800px"
         title="图库"
@@ -25,22 +25,25 @@
   </n-modal>
 </template>
 <script setup lang="ts">
-import { ref, PropType, defineEmits } from 'vue'
+import {ref, PropType, defineEmits, computed, toRef} from 'vue'
 const props = defineProps({
   imgArr: {
-    type: Array as PropType,
+    type: Array as PropType<any>,
   },
   showModal: {
-    type: Boolean as PropType,
+    type: Boolean as PropType<Boolean>,
   },
   imgStyle: {
-    type: String as PropType,
+    type: String as PropType<String>,
   },
 })
-const emits = defineEmits('clickImg')
+const emits = defineEmits(['clickImg', 'closeModal'])
 
 const clickImg = (item) => {
   emits('clickImg', item)
+}
+const closeModal = () => {
+  emits('closeModal')
 }
 
 </script>

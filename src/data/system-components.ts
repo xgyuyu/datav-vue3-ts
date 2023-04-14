@@ -355,6 +355,13 @@ export const chart: ComDataType = {
       thum: './img/funnel.png',
       used: true,
     },
+    {
+      name: 'VGauge',
+      alias: '仪表盘',
+      img: './img/gauge.jpg',
+      thum: './img/gauge.jpg',
+      used: true,
+    },
   ],
 }
 
@@ -552,6 +559,20 @@ export const material: ComDataType = {
       alias: '轮播图',
       img: `./img/imgCarousel.png`,
       thum: `./img/imgCarousel.png`,
+      used: true,
+    },
+    {
+      name: 'VTreeGif',
+      alias: '树背景',
+      img: `./img/tree-gif.jpg`,
+      thum: `./img/tree-gif.jpg`,
+      used: true,
+    },
+    {
+      name: 'VModel3d',
+      alias: '3d模型',
+      img: `./img/tree-gif.jpg`,
+      thum: `./img/tree-gif.jpg`,
       used: true,
     },
   ],

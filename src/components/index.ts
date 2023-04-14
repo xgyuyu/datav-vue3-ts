@@ -56,6 +56,9 @@ import VFunnel from './chart/funnel'
 import VTitleBg from './datav/title-bg'
 import VPie3d from './pie/pie3d'
 import VSemicircle from './pie/semicircle'
+import VTreeGif from './media/tree-gif'
+import VGauge from './chart/gauge'
+import VModel3d from './media/model3d'
 // -- prepend placeholder 1 --
 
 const components = [
@@ -115,6 +118,9 @@ const components = [
   VTitleBg,
   VPie3d,
   VSemicircle,
+  VTreeGif,
+  VGauge,
+  VModel3d,
 // -- prepend placeholder 2 --
 ]
 

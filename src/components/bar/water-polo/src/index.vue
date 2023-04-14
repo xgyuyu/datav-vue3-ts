@@ -48,7 +48,7 @@ export default defineComponent({
     const option = computed(() => {
       const { series } = config.value
       const series1 = series;
-      series1[0].data = [dv_data.value.data || 0]
+      series1[0].data = dv_data.value.data || [0]
       return {
         series: series1,
       }

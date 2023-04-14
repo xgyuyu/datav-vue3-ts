@@ -13,7 +13,7 @@ export const previewHost = import.meta.env.VITE_APP_CDN || ''
 
 export const validAllowImg = (file: FileInfo, option: Partial<UploadOption>) => {
   const opt: UploadOption = {
-    allowType: 'gif|jpeg|jpg|png',
+    allowType: 'gif|jpeg|jpg|png|svg',
     allowSize: 2,
     ...option,
   }

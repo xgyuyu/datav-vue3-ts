@@ -19,6 +19,7 @@
         :imgArr="imgArr"
         imgStyle="width: 180px;height: 40px;margin-right: 10px"
         @clickImg="changeImgBg"
+        @closeModal="closeModal"
     />
   </div>
 </template>
@@ -47,16 +48,20 @@ export default defineComponent({
       showImgModal.value = false
       config.value.img = item
     }
+    const closeModal = () => {
+      showImgModal.value = false
+    }
     const setImgModal = () => {
       showImgModal.value = true
-      const titleArr1 = Array.from({length: 9}).map((v, i) => `./source/title${i+1}.png`);
-      const titleArr2 = Array.from({length: 2}).map((v, i) => `./source/subtitle${i+1}.png`);
+      const titleArr1 = Array.from({length: 10}).map((v, i) => `./source/title${i+1}.png`);
+      const titleArr2 = Array.from({length: 4}).map((v, i) => `./source/subtitle${i+1}.png`);
       imgArr.value = titleArr1.concat(titleArr2)
     }
     return {
       config,
       showImgModal,
       imgArr,
+      closeModal,
       changeImgBg,
       setImgModal,
     }

@@ -168,3 +168,12 @@ export const fileToUrl = (file: File): string => {
   const ImageUrl = Url.createObjectURL(file)
   return ImageUrl
 }
+
+export const getLocalData = (id: number, name: string) => {
+  const localData = JSON.parse(localStorage.getItem('DataV-Preview'));
+  if (localData.screen.id === id) {
+    return localData[name]
+  } else {
+    return null
+  }
+}

@@ -18,10 +18,15 @@
     </g-field>
     <g-field
       label="背景图"
+      v-if="config.imageType === 'bitmap'"
     >
       <g-upload-image
         v-model="config.backgroundImage"
-      />
+      >
+        <n-icon @click="setImgModal" color="#fff" style="cursor: pointer;background: #2483ff">
+          <IconImg />
+        </n-icon>
+      </g-upload-image>
     </g-field>
     <g-field
       v-if="config.imageType === 'vector'"
@@ -29,7 +34,11 @@
     >
       <g-upload-image
         v-model="config.vectorImage"
-      />
+      >
+        <n-icon @click="setImgModal" color="#fff" style="cursor: pointer;background: #2483ff">
+          <IconImg />
+        </n-icon>
+      </g-upload-image>
     </g-field>
     <g-field
       v-if="config.imageType === 'vector'"
@@ -85,16 +94,24 @@
         v-model:value="config.cursor"
       />
     </g-field>
+    <img-modal
+        :showModal="showImgModal"
+        :imgArr="imgArr"
+        imgStyle="width: 80px;height: 80px;margin-right: 10px"
+        @clickImg="clickImg"
+        @closeModal="closeModal"
+    />
   </div>
 </template>
 
 <script lang='ts'>
-import { defineComponent, PropType, toRef } from 'vue'
+import {defineComponent, PropType, ref, toRef} from 'vue'
 import {
   imageTypes,
   repeatTypes,
 } from '@/data/select-options'
 import { MainImg } from './main-img'
+import { IconImg } from '@/icons'
 
 export default defineComponent({
   name: 'VMainImgProp',
@@ -104,12 +121,34 @@ export default defineComponent({
       required: true,
     },
   },
+  components: {
+    IconImg,
+  },
   setup(props) {
     const config = toRef(props.com, 'config')
+    const showImgModal = ref(false)
+    const imgArr = ref([])
 
+    const clickImg = (item) => {
+      showImgModal.value = false
+      config.value.imageType === 'vector' ? config.value.vectorImage = item : config.value.backgroundImage = item
+    }
+    const closeModal = () => {
+      showImgModal.value = false
+    }
+    const setImgModal = () => {
+      showImgModal.value = true
+      const arr1 = Array.from({length: 17}).map((v, i) => `./source/pc${i+1}.png`);
+      const arr2 = Array.from({length: 24}).map((v, i) => `./source/pc${i+1}.svg`);
+      imgArr.value = config.value.imageType === 'vector' ? arr2 : arr1
+    }
     return {
       config,
-
+      showImgModal,
+      imgArr,
+      clickImg,
+      setImgModal,
+      closeModal,
       imageTypes,
       repeatTypes,
     }

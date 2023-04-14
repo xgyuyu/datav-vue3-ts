@@ -467,6 +467,19 @@
         />
       </g-field>
     </g-field-collapse>
+    <g-field-collapse
+        label="颜色配置"
+    >
+      <g-field
+          :level="2"
+          v-for="(v, i) in config.colorList"
+          :label="`颜色${i+1}`"
+      >
+        <g-color-picker
+            v-model="config.colorList[i]"
+        />
+      </g-field>
+    </g-field-collapse>
   </div>
 </template>
 

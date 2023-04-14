@@ -20,6 +20,7 @@ export class Semicircle extends DatavComponent {
       ['Christian Social Union in Bavaria', 46, 'CSU'],
       ['Alternative for Germany', 94, 'AfD']
     ],
+    colorList: ['#BE3075', '#EB001F', '#64A12D', '#FFED00', '#000000', '#008AC5', '#009EE0'],
     option: {
       center: [50, 88],
       size: 80,
@@ -60,9 +61,9 @@ export class Semicircle extends DatavComponent {
     try {
       // 组件静态数据来源，当前项目统一管理目录：public/data/*
       // 如：public/data/demo/data.json 简写为 => demo/data
-      // const path = ''
-      // const res = await getStaticData(this.id, path)
-      // this.apiData.source.config.data = JSON.stringify(res.data)
+      const path = 'pie/semicircle'
+      const res = await getStaticData(this.id, path)
+      this.apiData.source.config.data = JSON.stringify(res.data)
     } catch (error) {
       throw error
     }

@@ -69,6 +69,7 @@ export default defineComponent({
     onMounted(async () => {
       try {
         const tplId = parseInt(route.query.tpl as string)
+        console.log('tplId=====', tplId);
         if (tplId > 0) {
           const { data } = await getSysTemplate(tplId)
           if (data) {

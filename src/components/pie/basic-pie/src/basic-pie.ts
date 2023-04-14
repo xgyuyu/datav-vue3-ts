@@ -108,6 +108,7 @@ export class BasicPie extends DatavComponent {
         pageNumColor: '#90a0ae',
       },
     },
+    colorList: ['#45C2E0', '#C1EBDD', '#FFC851','#5A5476','#1869A0','#FF9393'],
     series: [
       {
         type: 'pie',

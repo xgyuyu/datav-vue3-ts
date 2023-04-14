@@ -90,7 +90,7 @@ const getSeries = () => {
 }
 
 const option = computed(() => {
-  const { global, tooltip, legend, animation } = config.value
+  const { global, tooltip, legend, animation, colorList } = config.value
   const [legendTop, legendLeft] = legend.position.split('-')
 
   const opts = {
@@ -107,11 +107,11 @@ const option = computed(() => {
       },
       padding: [tooltip.background.padding.v, tooltip.background.padding.h],
       backgroundColor: tooltip.background.color,
-      triggerOn: tooltip.triggerOn,
       trigger: tooltip.pointer.show ? 'axis' : 'item',
-      borderWidth: tooltip.background.borderWidth,
-      borderColor: tooltip.background.borderColor,
+      // borderWidth: tooltip.background.borderWidth,
+      // borderColor: tooltip.background.borderColor,
     },
+    color: colorList,
     legend: {
       show: legend.show,
       top: legendTop,
