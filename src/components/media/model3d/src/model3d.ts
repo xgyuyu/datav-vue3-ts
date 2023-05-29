@@ -19,7 +19,7 @@ export class Model3d extends DatavComponent {
   actions: Record<string, DataEventConfig>
 
   constructor() {
-    super('Model3d', { w: 200, h: 200 })
+    super('Model3d', { w: 700, h: 500 })
 
     this.initData()
   }

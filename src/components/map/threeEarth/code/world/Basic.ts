@@ -34,9 +34,9 @@ export class Basic {
     this.scene = new THREE.Scene()
     let ambientLight = new THREE.AmbientLight(0xffffff); //设置环境光
     this.scene.add(ambientLight); //将环境光添加到场景中
-    let pointLight = new THREE.PointLight(0xffffff, 1, 0);
-    pointLight.position.set(200, 200, 200); //设置点光源位置
-    this.scene.add(pointLight); //将点光源添加至场景
+    // let pointLight = new THREE.PointLight(0xffffff, 1, 0);
+    // pointLight.position.set(200, 200, 200); //设置点光源位置
+    // this.scene.add(pointLight); //将点光源添加至场景
 
     this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000)
     this.camera.position.set(this.cameraPosition.x, this.cameraPosition.y, this.cameraPosition.z)
